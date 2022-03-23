@@ -28,7 +28,7 @@ body {
 }
 
 .task {
-    min-height: 150px;
+    min-height: 300px;
     width: 13em;
     border-radius: 0px 5px 5px 5px;
     opacity: 0.85;
@@ -43,9 +43,10 @@ body {
     font-family: 'Inter', sans-serif;
     min-height: 100px;
     padding: 14px;
-    border-bottom: 1px solid black;
     cursor: move;
     position: relative;
+    background:rgba(255,255,255, 0.08);
+    margin-bottom: 10px;
 }
 
 
@@ -80,6 +81,7 @@ body {
 .h-added {
     padding: 3px 4px 3px 4px;
     border-radius: 3px;
+    max-width: 100px;
 }
 
 .category-added {
@@ -88,16 +90,17 @@ body {
 
 .description-added {
     font-size: 0.8em;
+    margin-bottom: 16px !important;
 }
 
 /*js controlled classes*/
 
 .high-urgency {
-    background-color: #ff0a0a;
+    background-color: #f42f2f;
 }
 
 .medium-urgency {
-    background-color: #ff7c0a;
+    background-color: #dc8a41;
 }
 
 .low-urgency {

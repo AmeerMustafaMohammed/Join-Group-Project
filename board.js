@@ -7,7 +7,7 @@ let tasks = [
         'due-date': '22.04.2022',
         'urgency': 'High',
         'assigned-to': 'Benjamin',
-        'category': 'to-do'
+        'class': 'in-review'
     },
     {   
         'id': 1,
@@ -17,7 +17,7 @@ let tasks = [
         'due-date': '30.03.2022',
         'urgency': 'Medium',
         'assigned-to': 'Tobias',
-        'category': 'to-do'
+        'class': 'to-do'
     },
     {   
         'id': 2,
@@ -27,21 +27,127 @@ let tasks = [
         'due-date': '01.05.2022',
         'urgency': 'Low',
         'assigned-to': 'Ameer',
-        'category': 'to-do'
-    }];
+        'class': 'approved'
+    },
+    {   
+        'id': 2,
+        'title': 'Drag n Drop integrieren',
+        'category': 'Web',
+        'description': 'Unterschiedliche Aufgaben erledigen',
+        'due-date': '01.05.2022',
+        'urgency': 'High',
+        'assigned-to': 'Ameer',
+        'class': 'in-review'
+    },
+    {   
+        'id': 2,
+        'title': 'Design ändern',
+        'category': 'Web',
+        'description': 'Bla BLa lLorem Ipsum Dolor amet',
+        'due-date': '01.05.2022',
+        'urgency': 'High',
+        'assigned-to': 'Ameer',
+        'class': 'to-do'
+    },
+    {   
+        'id': 2,
+        'title': 'Änderungen durchführen',
+        'category': 'Web',
+        'description': 'Unterschiedliche Aufgaben erledigen',
+        'due-date': '01.05.2022',
+        'urgency': 'Medium',
+        'assigned-to': 'Ameer',
+        'class': 'approved'
+    },
+    {   
+        'id': 2,
+        'title': 'Backend integrieren',
+        'category': 'Web',
+        'description': 'Unterschiedliche Aufgaben erledigen',
+        'due-date': '01.05.2022',
+        'urgency': 'Low',
+        'assigned-to': 'Ameer',
+        'class': 'in-progress'
+    },    {   
+        'id': 2,
+        'title': 'Login Screen Design',
+        'category': 'Web',
+        'description': 'Unterschiedliche Aufgaben erledigen',
+        'due-date': '01.05.2022',
+        'urgency': 'Medium',
+        'assigned-to': 'Ameer',
+        'class': 'in-progress'
+    },
+    {   
+        'id': 2,
+        'title': 'Test3',
+        'category': 'Web',
+        'description': 'Unterschiedliche Aufgaben erledigen',
+        'due-date': '01.05.2022',
+        'urgency': 'Low',
+        'assigned-to': 'Ameer',
+        'class': 'in-progress'
+    }
+];
 
 
 function init() {
-    showTasks();
+    updateHTML();
+    console.log('initializing');
 }
 
-function showTasks() {
+function updateHTML() {
+    updateTodo();
+    updateInProgress();
+    updateInReview();
+    updateApproved();
+}
+
+function updateTodo() {
     let toDo = document.getElementById('to-do');
     toDo.innerHTML = '';
     for(i = 0; i < tasks.length; i++) {
         const task = tasks[i];
+        if(task['class'] == 'to-do') {
         toDo.innerHTML += taskHTML(task, i);
         backgroundColors(task, i);
+        }
+    }
+}
+
+function updateInProgress() {
+    let inProgress = document.getElementById('in-progress');
+    inProgress.innerHTML = '';
+    for(i = 0; i < tasks.length; i++) {
+        const task = tasks[i];
+        if(task['class'] == 'in-progress') {
+        inProgress.innerHTML += taskHTML(task, i);
+        backgroundColors(task, i);
+        }
+    }
+}
+
+function updateInReview() {
+    let inReview = document.getElementById('in-review');
+    inReview.innerHTML = '';
+    for(i = 0; i < tasks.length; i++) {
+        const task = tasks[i];
+        if(task['class'] == 'in-review') {
+        inReview.innerHTML += taskHTML(task, i);
+        backgroundColors(task, i);
+        }
+    }
+}
+
+function updateApproved() {
+    let approved = document.getElementById('approved');
+    approved.innerHTML = '';
+    for(i = 0; i < tasks.length; i++) {
+        const task = tasks[i];
+        if(task['class'] == 'approved') {
+        approved.innerHTML += taskHTML(task, i);
+        backgroundColors(task, i);
+        }
     }
 }
 
@@ -89,5 +195,6 @@ function allowDrop(event) {
 }
 
 function moveTo(category) {
-    tasks[currentElement]['category'] = category;
+    tasks[currentElement]['class'] = category;
+    updateHTML();
 }
