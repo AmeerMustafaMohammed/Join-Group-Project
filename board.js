@@ -30,7 +30,7 @@ let tasks = [
         'class': 'approved'
     },
     {   
-        'id': 2,
+        'id': 3,
         'title': 'Drag n Drop integrieren',
         'category': 'Web',
         'description': 'Unterschiedliche Aufgaben erledigen',
@@ -40,7 +40,7 @@ let tasks = [
         'class': 'in-review'
     },
     {   
-        'id': 2,
+        'id': 4,
         'title': 'Design ändern',
         'category': 'Web',
         'description': 'Bla BLa lLorem Ipsum Dolor amet',
@@ -50,7 +50,7 @@ let tasks = [
         'class': 'to-do'
     },
     {   
-        'id': 2,
+        'id': 5,
         'title': 'Änderungen durchführen',
         'category': 'Web',
         'description': 'Unterschiedliche Aufgaben erledigen',
@@ -60,7 +60,7 @@ let tasks = [
         'class': 'approved'
     },
     {   
-        'id': 2,
+        'id': 6,
         'title': 'Backend integrieren',
         'category': 'Web',
         'description': 'Unterschiedliche Aufgaben erledigen',
@@ -69,7 +69,7 @@ let tasks = [
         'assigned-to': 'Ameer',
         'class': 'in-progress'
     },    {   
-        'id': 2,
+        'id': 7,
         'title': 'Login Screen Design',
         'category': 'Web',
         'description': 'Unterschiedliche Aufgaben erledigen',
@@ -79,7 +79,7 @@ let tasks = [
         'class': 'in-progress'
     },
     {   
-        'id': 2,
+        'id': 8,
         'title': 'Test3',
         'category': 'Web',
         'description': 'Unterschiedliche Aufgaben erledigen',
