@@ -1,0 +1,151 @@
+body {
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #191A1E;
+} 
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90vh;
+    flex-wrap: wrap;
+    margin-right: 5%;
+    margin-left: 5%;
+    background-color: #191A1E;
+}
+
+.task-container p {
+    display: flex;
+    align-items: center;
+    height: 2em;
+    padding-left: 10px;
+    width: 60%;
+    font-family: 'Kanit', sans-serif;
+    color: white;
+    letter-spacing: 0.7px;
+    margin-bottom: 0;border-radius: 5px 5px 0px 0px;
+}
+
+.task {
+    min-height: 150px;
+    width: 13em;
+    border-radius: 0px 5px 5px 5px;
+    opacity: 0.85;
+}
+
+.task:hover {
+    opacity: 0.9;
+}
+
+.added-task {
+    color: white;
+    font-family: 'Inter', sans-serif;
+    min-height: 100px;
+    padding: 14px;
+    border-bottom: 1px solid black;
+    cursor: move;
+    position: relative;
+}
+
+
+.top-added {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.bottom-added {
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.7em;
+}
+
+.date-added {
+    position: absolute;
+    bottom: 10px;
+    font-size: 0.7em;
+}
+
+.assigned-added {
+    position: absolute;
+    bottom: 10px;
+    right: 14px;
+    font-size: 0.7em;
+}
+
+.h-added {
+    padding: 3px 4px 3px 4px;
+    border-radius: 3px;
+}
+
+.category-added {
+    font-size: 0.7em;
+}
+
+.description-added {
+    font-size: 0.8em;
+}
+
+/*js controlled classes*/
+
+.high-urgency {
+    background-color: #ff0a0a;
+}
+
+.medium-urgency {
+    background-color: #ff7c0a;
+}
+
+.low-urgency {
+    background-color: #4ea656;
+}
+
+.dragging {
+    opacity: 0.6;
+}
+
+.d-none {
+    display: none;
+}
+
+/*ids*/
+
+#to-do {
+    background-color: #b82840;
+}
+
+#h-to-do {
+    background-color: #b82840;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px -10px 6px -8px inset;
+}
+
+#in-progress {
+    background-color: #285fb8;
+}
+
+#h-in-progress {
+    background-color: #285fb8;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px -10px 6px -8px inset;
+}
+
+#in-review {
+    background-color: #b8aa28;
+}
+
+#h-in-review {
+    background-color: #b8aa28;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px -10px 6px -8px inset;
+}
+
+#approved {
+    background-color: #3c6d37;
+}
+
+#h-approved {
+    background-color: #3c6d37;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px -10px 6px -8px inset;
+}
