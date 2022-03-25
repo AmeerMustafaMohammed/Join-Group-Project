@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Login</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="login.js"></script>
+</head>
+
+<body onload="init()">
+    <div id="login_container">
+
+        <img id="login_logo" src="./img/joinlogo.png" alt="logo">
+
+
+        <div id="card_body">
+            <h1>Welcome to JOIN</h1>
+
+            <button onclick="show('search_group_container'), show('group_search')" class="start_buttons yellow_button"
+                id="find_group">Join a
+                group</button>
+
+            <span><b>or</b></span>
+
+            <button onclick="show('search_group_container'), show('found_group_container')"
+                class="start_buttons purple_button" id="found_group">Found a group</button>
+        </div>
+    </div>
+
+    <div class="find_group_container d-none" id="search_group_container">
+        <!--Card-div for login/sign up-->
+        <div class="find_group">
+            <!--container for group search-->
+            <div class="group_search d-none" id="group_search">
+                <img class="find_group_logo" src="./img/joinlogo.png">
+
+                <img onclick="hide('search_group_container'), hide('group_search')" class="close pointer"
+                    src="./img/close.svg">
+
+                <h2>Search for your group</h2>
+
+                <input class="find_group_name" id="group_name_input" onfocus="this.value=''" type="text" placeholder="Enter group name..."
+                    required>
+
+                <span class="not_found d-none" id="group_not_found">
+                    Group doesn't exist. Please check if the name was written right
+                </span>
+
+                <span class="not_found d-none" id="empty_group_input">
+                    Please type in the name of the group!
+                </span>
+
+                <button onclick="checkIfGroupExists()" class="card_button  green_button">Next</button>
+            </div>
+
+            <!--container for user login-->
+            <div class="group_search d-none" id="user_login">
+                <img class="find_group_logo" src="./img/joinlogo.png">
+
+                <img onclick="hide('search_group_container'), hide('user_login')"
+
+                    class="close pointer" src="./img/close.svg">
+
+                <h2>Enter your Username and Email adress</h2>
+
+                <input class="find_group_name" id="username_input" onfocus="this.value=''" type="text" placeholder="Enter your username..."
+                    required>
+
+                <span class="not_found d-none" id="user_not_found">
+                    User doesn't exist. Please create an Account!
+                </span>
+
+                <span>Don't have an account?</span>
+
+                <button onclick="show('create_account'), hide('user_login')" class="card_button purple_button"
+                    id="sign_up">Sign Up</button>
+
+                <button onclick="userLogIn()" class="card_button green_button" id="login_button">Login</button>
+            </div>
+
+            <!--container for sign up-->
+            <div class="group_search d-none" id="create_account">
+                <img onclick="show('user_login'), hide('create_account')" class="go_back_icon pointer" src="./img/back.svg">
+
+                <img class="card_logo" src="./img/joinlogo.png">
+
+                <img onclick="hide('search_group_container'), hide('create_account')"
+                    class="close pointer" src="./img/close.svg">
+
+                <h2>Create an account</h2>
+
+                <input class="find_group_name" id="create_username_input" onfocus="this.value=''" type="text" placeholder="Enter your username..."
+                    required>
+
+                <button onclick="createAccount()" class="card_button green_button" id="login_button">Create
+                    account</button>
+            </div>
+
+            <!--container for group founding-->
+            <div class="group_search d-none" id="found_group_container">
+                <img class="find_group_logo" src="./img/joinlogo.png">
+
+                <img onclick="hide('search_group_container'), hide('found_group_container')" class="close pointer"
+                    src="./img/close.svg">
+
+                <h2>Enter your group name</h2>
+
+                <input class="find_group_name" id="found_group_name_input" onfocus="this.value=''" type="text" placeholder="Enter group name..."
+                    required>
+
+                <button onclick="addGroup()" class="card_button  green_button">Next</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
