@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Login</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="/css/login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <script src="login.js"></script>
+    <script src="/js/login.js"></script>
 </head>
 
 <body onload="init()">
@@ -22,14 +22,12 @@
         <div id="card_body">
             <h1>Welcome to JOIN</h1>
 
-            <button onclick="show('search_group_container'), show('group_search')" class="start_buttons yellow_button"
-                id="find_group">Join a
+            <button onclick="show('search_group_container'), show('group_search')" class="start_buttons yellow_button" id="find_group">Join a
                 group</button>
 
             <span><b>or</b></span>
 
-            <button onclick="show('search_group_container'), show('found_group_container')"
-                class="start_buttons purple_button" id="found_group">Found a group</button>
+            <button onclick="show('search_group_container'), show('found_group_container')" class="start_buttons purple_button" id="found_group">Found a group</button>
         </div>
     </div>
 
@@ -40,13 +38,11 @@
             <div class="group_search d-none" id="group_search">
                 <img class="find_group_logo" src="./img/joinlogo.png">
 
-                <img onclick="hide('search_group_container'), hide('group_search')" class="close pointer"
-                    src="./img/close.svg">
+                <img onclick="hide('search_group_container'), hide('group_search')" class="close pointer" src="./img/close.svg">
 
                 <h2>Search for your group</h2>
 
-                <input class="find_group_name" id="group_name_input" onfocus="this.value=''" type="text" placeholder="Enter group name..."
-                    required>
+                <input class="find_group_name" id="group_name_input" onfocus="this.value=''" type="text" placeholder="Enter group name..." required>
 
                 <span class="not_found d-none" id="group_not_found">
                     Group doesn't exist. Please check if the name was written right
@@ -63,14 +59,11 @@
             <div class="group_search d-none" id="user_login">
                 <img class="find_group_logo" src="./img/joinlogo.png">
 
-                <img onclick="hide('search_group_container'), hide('user_login')"
-
-                    class="close pointer" src="./img/close.svg">
+                <img onclick="hide('search_group_container'), hide('user_login')" class="close pointer" src="./img/close.svg">
 
                 <h2>Enter your Username and Email adress</h2>
 
-                <input class="find_group_name" id="username_input" onfocus="this.value=''" type="text" placeholder="Enter your username..."
-                    required>
+                <input class="find_group_name" id="username_input" onfocus="this.value=''" type="text" placeholder="Enter your username..." required>
 
                 <span class="not_found d-none" id="user_not_found">
                     User doesn't exist. Please create an Account!
@@ -78,8 +71,7 @@
 
                 <span>Don't have an account?</span>
 
-                <button onclick="show('create_account'), hide('user_login')" class="card_button purple_button"
-                    id="sign_up">Sign Up</button>
+                <button onclick="show('create_account'), hide('user_login')" class="card_button purple_button" id="sign_up">Sign Up</button>
 
                 <button onclick="userLogIn()" class="card_button green_button" id="login_button">Login</button>
             </div>
@@ -90,13 +82,11 @@
 
                 <img class="card_logo" src="./img/joinlogo.png">
 
-                <img onclick="hide('search_group_container'), hide('create_account')"
-                    class="close pointer" src="./img/close.svg">
+                <img onclick="hide('search_group_container'), hide('create_account')" class="close pointer" src="./img/close.svg">
 
                 <h2>Create an account</h2>
 
-                <input class="find_group_name" id="create_username_input" onfocus="this.value=''" type="text" placeholder="Enter your username..."
-                    required>
+                <input class="find_group_name" id="create_username_input" onfocus="this.value=''" type="text" placeholder="Enter your username..." required>
 
                 <button onclick="createAccount()" class="card_button green_button" id="login_button">Create
                     account</button>
@@ -106,13 +96,11 @@
             <div class="group_search d-none" id="found_group_container">
                 <img class="find_group_logo" src="./img/joinlogo.png">
 
-                <img onclick="hide('search_group_container'), hide('found_group_container')" class="close pointer"
-                    src="./img/close.svg">
+                <img onclick="hide('search_group_container'), hide('found_group_container')" class="close pointer" src="./img/close.svg">
 
                 <h2>Enter your group name</h2>
 
-                <input class="find_group_name" id="found_group_name_input" onfocus="this.value=''" type="text" placeholder="Enter group name..."
-                    required>
+                <input class="find_group_name" id="found_group_name_input" onfocus="this.value=''" type="text" placeholder="Enter group name..." required>
 
                 <button onclick="addGroup()" class="card_button  green_button">Next</button>
             </div>
