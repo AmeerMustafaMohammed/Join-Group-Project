@@ -79,6 +79,51 @@ body {
 }
 
 
+/* NEU USER CONTAINER */
+
+#add-user-container {
+    position: absolute;
+    z-index: 100;
+    background-color: rgb(0, 0, 0, 0.5);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-neu-user {
+    height: 40%;
+    width: 40%;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+
+.add-neu-user input {
+    height: 40px;
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.add-neu-user button {
+    height: 40px;
+    width: 100px;
+}
+
+.x {
+    background-color: red;
+    width: 50px;
+    height: 50px;
+}
+
+
 /* FORM ELEMENTS */
 
 button {

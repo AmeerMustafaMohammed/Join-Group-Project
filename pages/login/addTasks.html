@@ -69,11 +69,10 @@
                 <div class="asign-member">
                     <select id="asign-member">
                         <option value="max musterman">Max Musterman</option>
-                        <option value="Herr Müller">Herr Müller</option>
+                    
                     </select>
-                    <img src="/img/add-task-img/img/icon plus.png" alt="">
+                    <img src="/img/add-task-img/img/icon plus.png" alt="" onclick="showDiv('add-user-container')">
                 </div>
-
             </div>
 
             <div class="form-buttons">
@@ -81,6 +80,14 @@
                 <button>CANCEL</button>
             </div>
         </div>
+        <!-- ADDING USER CONTAINER -->
+        <section id="add-user-container" style="display: none;">
+            <div class="add-neu-user">
+                <h5 onclick="hideDiv('add-user-container')" class="x">X</h5>
+                <input type="text" placeholder="insert neu user" id="neu-user">
+                <button onclick="addNeuUser()">ADD USER</button>
+            </div>
+        </section>
 
     </section>
 
