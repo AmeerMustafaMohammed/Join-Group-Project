@@ -1,7 +1,9 @@
 body {
     margin: 0;
     box-sizing: border-box;
-    background-color: #191A1E;
+    background-image: url(../img/board-img/board-bg-3.jpg);
+    background-size: cover;
+    overflow-x: hidden;
 } 
 
 .content {
@@ -12,8 +14,15 @@ body {
     flex-wrap: wrap;
     margin-right: 5%;
     margin-left: 5%;
-    background-color: #191A1E;
-    background-image: url(img/board-img/board-bg-1.jpg);
+    /*background-color: #191A1E;*/
+
+}
+
+.task-container {
+    background-color: #E2E4E6;
+    border-radius: 4px;
+    margin: 24px;
+    transition: All 250ms ease-in-out;
 }
 
 .task-container p {
@@ -23,14 +32,14 @@ body {
     padding-left: 10px;
     width: 60%;
     font-family: 'Kanit', sans-serif;
-    color: white;
+    color: black;
     letter-spacing: 0.7px;
     margin-bottom: 0;border-radius: 5px 5px 0px 0px;
 }
 
 .task {
     min-height: 300px;
-    width: 13em;
+    width: 15em;
     border-radius: 0px 5px 5px 5px;
     opacity: 0.85;
 }
@@ -40,14 +49,21 @@ body {
 }
 
 .added-task {
-    color: white;
+    color: black;
     font-family: 'Inter', sans-serif;
-    min-height: 100px;
+    min-height: 50px;
     padding: 14px;
-    cursor: move;
+    cursor: pointer;
     position: relative;
-    background:rgba(255,255,255, 0.08);
+    background:white;
     margin-bottom: 10px;
+    margin: 8px;
+    border-radius: 4px;
+}
+
+.added-task:hover {
+    transition: box-shadow 200ms ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .top-added {
@@ -93,6 +109,28 @@ body {
     margin-bottom: 16px !important;
 }
 
+.added-task-zoom {
+    color: black;
+    font-family: 'Inter', sans-serif;
+    min-height: 50px;
+    padding: 14px;
+    width: 40%;
+    height: 40%;
+    cursor: pointer;
+    position: relative;
+    background:white;
+    margin-bottom: 10px;
+    margin: 8px;
+    border-radius: 4px;
+    margin: 0 auto;
+    display: grid;
+    place-items: center;
+}
+
+.top-zoom {
+    display: flex;
+}
+
 /*js controlled classes*/
 
 .high-urgency {
@@ -135,54 +173,33 @@ body {
     opacity: 1;
 }
 
-/*ids*/
-
-#to-do {
-    background-color: #b82840;
-}
-
-#h-to-do {
-    background-color: #b82840;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px -10px 6px -8px inset;
-}
-
-#in-progress {
-    background-color: #285fb8;
-}
-
-#h-in-progress {
-    background-color: #285fb8;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px -10px 6px -8px inset;
-}
-
-#in-review {
-    background-color: #b8aa28;
-}
-
-#h-in-review {
-    background-color: #b8aa28;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px -10px 6px -8px inset;
-}
-
-#approved {
-    background-color: #3c6d37;
-}
-
-#h-approved {
-    background-color: #3c6d37;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px -10px 6px -8px inset;
+.z-index-2000 {
+    z-index: 2000
 }
 
 body {
-    position: relative;
+    position: relative !important;
 }
 
 #zoom-task {
-    backdrop-filter: blur(4px);
-    position: absolute;
-    top: 0;
-    left: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+    position: fixed;
+    top: -200px;
+    left: -200px;
+    right: 0;
+    bottom: 0;
     height: 100vh;
     width: 100%;
     padding: 200px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+#test {
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    position: absolute;
+    top: 0;
 }

@@ -1,10 +1,10 @@
 let tasks = [];
+let currentElement;
 
 
 function init() {
-    tasks = loadJSON('TASKS')
+    tasks = loadJSON('TASKS');
     updateHTML();
-
 }
 
 function updateHTML() {
@@ -12,53 +12,46 @@ function updateHTML() {
     updateInProgress();
     updateInReview();
     updateApproved();
+    saveTasksToLocal('TASKS', tasks);
 }
 
 function updateTodo() {
-    let toDo = document.getElementById('to-do');
-    toDo.innerHTML = '';
-    for (i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
-        if (task['class'] == 'to-do') {
-            toDo.innerHTML += taskHTML(task, i);
-            backgroundColors(task, i);
-        }
+    let tasksToDo = tasks.filter(t => t['class'] == 'to-do');
+    document.getElementById('to-do').innerHTML = '';
+    for (i = 0; i < tasksToDo.length; i++) {
+        const task = tasksToDo[i];
+        document.getElementById('to-do').innerHTML += taskHTML(task, i);
+        backgroundColors(task, i);
     }
 }
 
 function updateInProgress() {
-    let inProgress = document.getElementById('in-progress');
-    inProgress.innerHTML = '';
-    for (i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
-        if (task['class'] == 'in-progress') {
-            inProgress.innerHTML += taskHTML(task, i);
-            backgroundColors(task, i);
-        }
+    let tasksInProgress = tasks.filter(t => t['class'] == 'in-progress');
+    document.getElementById('in-progress').innerHTML = '';
+    for (i = 0; i < tasksInProgress.length; i++) {
+        const task = tasksInProgress[i];
+        document.getElementById('in-progress').innerHTML += taskHTML(task, i);
+        backgroundColors(task, i);
     }
 }
 
 function updateInReview() {
-    let inReview = document.getElementById('in-review');
-    inReview.innerHTML = '';
-    for (i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
-        if (task['class'] == 'in-review') {
-            inReview.innerHTML += taskHTML(task, i);
-            backgroundColors(task, i);
-        }
+    let tasksInReview = tasks.filter(t => t['class'] == 'in-review');
+    document.getElementById('in-review').innerHTML = '';
+    for (i = 0; i < tasksInReview.length; i++) {
+        const task = tasksInReview[i];
+        document.getElementById('in-review').innerHTML += taskHTML(task, i);
+        backgroundColors(task, i);
     }
 }
 
 function updateApproved() {
-    let approved = document.getElementById('approved');
-    approved.innerHTML = '';
-    for (i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
-        if (task['class'] == 'approved') {
-            approved.innerHTML += taskHTML(task, i);
-            backgroundColors(task, i);
-        }
+    let tasksApproved = tasks.filter(t => t['class'] == 'approved');
+    document.getElementById('approved').innerHTML = '';
+    for (i = 0; i < tasksApproved.length; i++) {
+        const task = tasksApproved[i];
+        document.getElementById('approved').innerHTML += taskHTML(task, i);
+        backgroundColors(task, i);
     }
 }
 
@@ -78,24 +71,58 @@ function backgroundColors(task, i) {
     }
 }
 
-function taskHTML(task, i) {
+function taskHTML (task, i) {
     return /*html*/ `
-        <div class="added-task" draggable="true" ondragstart="startDragging(${task['id']})">
+    <div onclick="showAddedTask(${i})" class="added-task" draggable="true" ondragstart="startDragging(${task['id']})">
             <div class="top-added">
                 <span id="h-${i}" class="h-added">${task['title']}</span>
-                <span class="category-added">${task['category']}</span>
-            </div>
-            <span class="description-added">${task['description']}</span>
-            <div>
                 <span class="date-added">${task['due-date']}</span>
                 <span class="assigned-added">${task['assigned-to']}</span>
             </div>
         </div>`;
 }
 
+function  showAddedTask(i) {
+    let task = tasks[i];
+    generateZoomTaskHTML(task);
+    document.getElementById('zoom-task').classList.remove('scale-0');
+    document.getElementById('zoom-task').classList.remove('opacity-0');
+    document.getElementById('zoom-task').classList.add('opacity-1');
+    document.getElementById('zoom-task').classList.add('z-index-2000');
+    document.getElementById('zoom-task').classList.add('scale-1');
+}
+
+function taskZoomHTML(task) {
+    return /*html*/ `
+        <div class="added-task-zoom">
+            <div class="top-zoom">
+                <h2 id="h-${i}"><b>${task['title']}</b></h2>
+            </div>
+            <span>Category: ${task['category']}</span>
+            <span> Description: ${task['description']}</span>
+            <span> Urgency: ${task['urgency']}</span>
+            <div>
+                <span>Deadline: ${task['due-date']}</span>
+                <span>${task['assigned-to']}</span>
+            </div>
+        </div>`;
+}
+
+function generateZoomTaskHTML(task) {
+    document.getElementById('zoom-task').innerHTML = '';
+    document.getElementById('zoom-task').innerHTML = taskZoomHTML(task);
+}
+
+function backToNormal() {
+    document.getElementById('zoom-task').classList.add('scale-0');
+    document.getElementById('zoom-task').classList.add('opacity-0');
+    document.getElementById('zoom-task').classList.remove('opacity-1');
+    document.getElementById('zoom-task').classList.remove('z-index-2000');
+    document.getElementById('zoom-task').classList.remove('scale-1');
+}
 /*drag function*/
 
-let currentElement;
+
 
 function startDragging(id) {
     currentElement = id;
@@ -117,5 +144,9 @@ function loadJSON(key) {
         JSON = JSON.parse(JSONAsString);
         return JSON;
     }
+}
 
+function saveTasksToLocal(key, array) {
+    let tasksAsString = JSON.stringify(array);
+    localStorage.setItem(key, tasksAsString)
 }

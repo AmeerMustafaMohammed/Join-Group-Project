@@ -46,7 +46,6 @@ function addTaskToTasks(neuTitle, neuCategory, neuDescription, neuDate, urgency,
     }
     tasks.push(task)
     saveJson('TASKS', tasks)
-
 }
 
 
