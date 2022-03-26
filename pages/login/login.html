@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Login</title>
-    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <script src="/js/login.js"></script>
+    <script src="login.js"></script>
 </head>
 
 <body onload="init()">
     <div id="login_container">
 
-        <img id="login_logo" src="./img/joinlogo.png" alt="logo">
+        <img id="login_logo" src="./img-login/joinlogo.png" alt="logo">
 
 
         <div id="card_body">
@@ -36,9 +36,9 @@
         <div class="find_group">
             <!--container for group search-->
             <div class="group_search d-none" id="group_search">
-                <img class="find_group_logo" src="./img/joinlogo.png">
+                <img class="find_group_logo" src="./img-login/joinlogo.png">
 
-                <img onclick="hide('search_group_container'), hide('group_search')" class="close pointer" src="./img/close.svg">
+                <img onclick="hide('search_group_container'), hide('group_search')" class="close pointer" src="./img-login/close.svg">
 
                 <h2>Search for your group</h2>
 
@@ -57,9 +57,9 @@
 
             <!--container for user login-->
             <div class="group_search d-none" id="user_login">
-                <img class="find_group_logo" src="./img/joinlogo.png">
+                <img class="find_group_logo" src="./img-login/joinlogo.png">
 
-                <img onclick="hide('search_group_container'), hide('user_login')" class="close pointer" src="./img/close.svg">
+                <img onclick="hide('search_group_container'), hide('user_login')" class="close pointer" src="./img-login/close.svg">
 
                 <h2>Enter your Username and Email adress</h2>
 
@@ -78,11 +78,11 @@
 
             <!--container for sign up-->
             <div class="group_search d-none" id="create_account">
-                <img onclick="show('user_login'), hide('create_account')" class="go_back_icon pointer" src="./img/back.svg">
+                <img onclick="show('user_login'), hide('create_account')" class="go_back_icon pointer" src="./img-login/back.svg">
 
-                <img class="card_logo" src="./img/joinlogo.png">
+                <img class="card_logo" src="./img-login/joinlogo.png">
 
-                <img onclick="hide('search_group_container'), hide('create_account')" class="close pointer" src="./img/close.svg">
+                <img onclick="hide('search_group_container'), hide('create_account')" class="close pointer" src="./img-login/close.svg">
 
                 <h2>Create an account</h2>
 
@@ -94,9 +94,9 @@
 
             <!--container for group founding-->
             <div class="group_search d-none" id="found_group_container">
-                <img class="find_group_logo" src="./img/joinlogo.png">
+                <img class="find_group_logo" src="./img-login/joinlogo.png">
 
-                <img onclick="hide('search_group_container'), hide('found_group_container')" class="close pointer" src="./img/close.svg">
+                <img onclick="hide('search_group_container'), hide('found_group_container')" class="close pointer" src="./img-login/close.svg">
 
                 <h2>Enter your group name</h2>
 

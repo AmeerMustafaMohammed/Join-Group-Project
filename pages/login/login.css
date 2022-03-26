@@ -3,7 +3,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(./img/desk.jpg);
+    background-image: url(./img-login/desk.jpg);
     background-size: cover;
     color: white;
     font-family: 'Roboto', sans-serif;
