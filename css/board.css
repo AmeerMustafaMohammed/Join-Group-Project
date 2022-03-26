@@ -13,6 +13,7 @@ body {
     margin-right: 5%;
     margin-left: 5%;
     background-color: #191A1E;
+    background-image: url(img/board-img/board-bg-1.jpg);
 }
 
 .task-container p {
@@ -48,7 +49,6 @@ body {
     background:rgba(255,255,255, 0.08);
     margin-bottom: 10px;
 }
-
 
 .top-added {
     display: flex;

@@ -1,0 +1,213 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(./img/desk.jpg);
+    background-size: cover;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+}
+
+button {
+    cursor: pointer;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.gray_icon {
+    filter: invert(36%) sepia(0%) saturate(1783%) hue-rotate(144deg) brightness(103%) contrast(81%);
+}
+
+#login_container {
+    height: 700px;
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#login_logo {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+}
+
+#card_body {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#login_container span {
+    font-size: 30px;
+}
+
+h1 {
+    margin-bottom: 60px;
+    font-size: 80px;
+    color: #ffffff;
+}
+
+.start_buttons {
+    margin: 16px;
+    height: 100px;
+    width: 300px;
+    border: none;
+    font-size: 30px;
+    color: white;
+    border-radius: 24px;
+}
+
+.yellow_button {
+    background-color: #e29a2d !important;
+}
+
+.purple_button {
+    background-color: #393180 !important;
+}
+
+.yellow_button:hover {
+    background-color: #cf7c00 !important;
+}
+
+.purple_button:hover {
+    background-color: #2b255f !important;
+}
+
+.green_button {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    background-color: #3a972d;
+}
+
+.green_button:hover {
+    background-color: #147207;
+}
+
+.find_group_container {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(63, 63, 63, 0.6);
+}
+
+.find_group {
+    height: 600px;
+    width: 1000px;
+    position: relative;
+    position: absolute;
+    left: calc(50% - 500px);
+    top: calc(50% - 300px);
+    background-color: #272727;
+    border: 1px solid #646464;
+    border-radius: 20px;
+}
+
+.group_search {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.not_found {
+    margin-top: 20px;
+    color: red;
+    font-size: 18px;
+}
+
+.close {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+.find_group_logo {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+}
+
+.card_logo {
+    position: absolute;
+    top: 16px;
+    left: 60px;
+}
+
+.go_back_icon {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+}
+
+.find_group h2 {
+    margin-top: 100px;
+    font-size: 40px;
+}
+
+.find_group_name {
+    margin-top: 20px;
+    padding: 8px;
+    height: 50px;
+    width: 400px;
+    background-color: transparent;
+    border: 3px solid #646464;
+    border-radius: 20px;
+    font-size: 20px;
+    color: white;
+    box-sizing: border-box;
+}
+
+.find_group_name::placeholder {
+    font-size: 20px;
+}
+
+.card_button {
+    height: 60px;
+    width: 180px;
+    color: white;
+    font-size: 24px;
+    border: none;
+    border-radius: 20px;
+}
+
+.go_back_button {
+    width: 100px !important;
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    background-color: #616161;
+
+}
+
+.go_back_button:hover {
+    background-color: #4e4e4e;
+}
+
+#sign_up {
+    position: unset;
+    width: 240px;
+}
+
+#user_login span {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}

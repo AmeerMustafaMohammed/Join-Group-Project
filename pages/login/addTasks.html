@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/add-task-style.css">
+    <script src="/js/include.js"></script>
+    <script src="/js/addTask.js"></script>
+</head>
+
+<body onload="includeHTML(); init()">
+    <div w3-include-html="navigation.html"></div>
+    <!-- GROUP NAME -->
+    <div class="group-name">
+        <h4 id="GroupName">Angemeldt: </h4>
+    </div>
+
+    <!-- BIG- TITLE -->
+    <div class="big-title">
+        <h1>ADD TASK</h1>
+        <p>Learning Manegment System Project</p>
+    </div>
+    <!-- ADDING FORM -->
+    <section id="add-task-container">
+
+        <!-- LEFT SIDE OF CONTAINER -->
+        <div class="container-left">
+
+            <div class="add-title">
+                <h2>Title</h2>
+                <input type="text" id="add-title">
+            </div>
+            <div class="add-category">
+                <h2>CATEGORY</h2>
+                <select id="add-category">
+                   <option value="IT">IT</option>
+                   <option value="Controling">Controling</option>
+                   <option value="Web">Web</option>
+                   <option value="Backend">Backend</option>
+               </select>
+            </div>
+            <div class="add-description">
+                <h2>DESCRIPTION</h2>
+                <textarea id="add-description" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE OF CONTAINER -->
+        <div class="container-right">
+            <div class="add-date">
+                <h2>DUE DATE</h2>
+                <input type="date" id="add-date" value="2022-03-25">
+            </div>
+
+            <div class="add-urgency">
+                <h2>URGENCY</h2>
+                <select id="add-category">
+                   <option value="High">High</option>
+                   <option value="Medium">Medium</option>
+                   <option value="Low">Low</option>
+               </select>
+            </div>
+
+            <div class="member-container">
+                <h2>MEMBER</h2>
+                <div class="asign-member">
+                    <select id="asign-member">
+                        <option value="max musterman">Max Musterman</option>
+                        <option value="Herr Müller">Herr Müller</option>
+                    </select>
+                    <img src="/img/add-task-img/img/icon plus.png" alt="">
+                </div>
+
+            </div>
+
+            <div class="form-buttons">
+                <button onclick="catchInputs()">CREATE TICKET</button>
+                <button>CANCEL</button>
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+
+
+
+    <!-- OLD CRATE GROUP -->
+
+
+
+    <!--    <section id="CreateaGrop">
+        <h1>CREATE A GROUP</h1>
+        <input type="text" id="create-group-name">
+        <button onclick="createGroup()">Create a Group</button>
+    </section>
+
+    <section id="Login">
+        <h1>Login With GROUP</h1>
+        <input type="text" id="login-name" placeholder="Insert your grop name">
+        <button onclick="login()">Login</button>
+    </section>
+
+    <section id="members">
+        <h1>Adding neu member</h1>
+        <input type="text" id="Add-neu-member">
+        <button onclick="AddMember()">Mitglied Hinzugügen</button>
+    </section>
+    <section id="showMembers">
+        <H1>SHOW ALL MEMBERS FOR THIS GRUOP</H1>
+        <button onclick="showMembers()">Show</button>
+    </section> -->
+
+
+</body>
+
+</html>
