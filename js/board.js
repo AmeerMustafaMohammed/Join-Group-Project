@@ -6,7 +6,8 @@ function init() {
     tasks = loadJSON('TASKS');
     updateHTML();
 }
- /*generate Task Container HTML*/
+
+/*generate Task Container HTML*/
 
 function updateHTML() {
     updateTodo();
@@ -151,7 +152,7 @@ function loadJSON(key) {
     }
 }
 
-function saveTasksToLocal(key, array) {
-    let tasksAsString = JSON.stringify(array);
-    localStorage.setItem(key, tasksAsString)
+function saveTasksToLocal(key, tasks) {
+    // let tasksAsString = JSON.stringify(array);
+    localStorage.setItem(key, JSON.stringify(tasks))
 }
