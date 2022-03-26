@@ -27,13 +27,20 @@ function loadAllUser() {
 function showAllUsers() {
     let memberOptions = document.getElementById('asign-member');
     memberOptions.innerHTML = '';
-    for (let i = 0; i < allUser.length; i++) {
-        if (allUser[0]['gruppe'] == currentGroup) {
-            memberOptions.innerHTML += `
-            <option value="max musterman">${allUser[i]['name']}</option>
-            `;
+    if (!allUser.length == 0) {
+        for (let i = 0; i < allUser.length; i++) {
+            if (allUser[0]['gruppe'] == currentGroup) {
+                memberOptions.innerHTML += `
+                <option value="max musterman">${allUser[i]['name']}</option>
+                `;
+            }
         }
+    } else {
+        memberOptions.innerHTML = `
+        <option value="keine User">Add USER</option>
+        `;
     }
+
 }
 
 
