@@ -131,6 +131,12 @@ body {
     display: flex;
 }
 
+.bottom-zoom {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
 /*js controlled classes*/
 
 .high-urgency {

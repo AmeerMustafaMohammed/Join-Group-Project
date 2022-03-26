@@ -6,6 +6,7 @@ function init() {
     tasks = loadJSON('TASKS');
     updateHTML();
 }
+ /*generate Task Container HTML*/
 
 function updateHTML() {
     updateTodo();
@@ -55,6 +56,19 @@ function updateApproved() {
     }
 }
 
+function taskHTML (task, i) {
+    return /*html*/ `
+    <div onclick="showAddedTask(${i})" class="added-task" draggable="true" ondragstart="startDragging(${task['id']})">
+            <div class="top-added">
+                <span id="h-${i}" class="h-added">${task['title']}</span>
+                <span class="date-added">${task['due-date']}</span>
+                <span class="assigned-added">${task['assigned-to']}</span>
+            </div>
+        </div>`;
+}
+
+/*change headline bg-colors according to urgency*/
+
 function backgroundColors(task, i) {
     let h = document.getElementById(`h-${i}`);
 
@@ -71,16 +85,7 @@ function backgroundColors(task, i) {
     }
 }
 
-function taskHTML (task, i) {
-    return /*html*/ `
-    <div onclick="showAddedTask(${i})" class="added-task" draggable="true" ondragstart="startDragging(${task['id']})">
-            <div class="top-added">
-                <span id="h-${i}" class="h-added">${task['title']}</span>
-                <span class="date-added">${task['due-date']}</span>
-                <span class="assigned-added">${task['assigned-to']}</span>
-            </div>
-        </div>`;
-}
+/*show Details of clicked Task*/
 
 function  showAddedTask(i) {
     let task = tasks[i];
@@ -99,10 +104,10 @@ function taskZoomHTML(task) {
                 <h2 id="h-${i}"><b>${task['title']}</b></h2>
             </div>
             <span>Category: ${task['category']}</span>
-            <span> Description: ${task['description']}</span>
-            <span> Urgency: ${task['urgency']}</span>
-            <div>
-                <span>Deadline: ${task['due-date']}</span>
+            <span>Description: ${task['description']}</span>
+            <span>Urgency: ${task['urgency']}</span>
+            <div class="bottom-zoom">
+                <span>${task['due-date']}</span>
                 <span>${task['assigned-to']}</span>
             </div>
         </div>`;
@@ -120,9 +125,8 @@ function backToNormal() {
     document.getElementById('zoom-task').classList.remove('z-index-2000');
     document.getElementById('zoom-task').classList.remove('scale-1');
 }
+
 /*drag function*/
-
-
 
 function startDragging(id) {
     currentElement = id;
@@ -137,6 +141,7 @@ function moveTo(category) {
     updateHTML();
 }
 
+/*access storage*/
 
 function loadJSON(key) {
     let JSONAsString = localStorage.getItem(key)
