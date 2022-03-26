@@ -33,7 +33,9 @@ function catchInputs() {
 
 }
 
+
 function addTaskToTasks(neuTitle, neuCategory, neuDescription, neuDate, urgency, toMember) {
+    
     let task = {
         'id': idAutoincrement(),
         'title': neuTitle,

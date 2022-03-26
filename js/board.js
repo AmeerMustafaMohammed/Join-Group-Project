@@ -1,9 +1,9 @@
-let tasks = [];
+let addedTasks = [];
 let currentElement;
 
 
 function init() {
-    tasks = loadJSON('TASKS');
+    addedTasks = JSON.parse(localStorage.getItem('TASKS'));
     updateHTML();
 }
 
@@ -14,11 +14,11 @@ function updateHTML() {
     updateInProgress();
     updateInReview();
     updateApproved();
-    saveTasksToLocal('TASKS', tasks);
+    saveChanges();
 }
 
 function updateTodo() {
-    let tasksToDo = tasks.filter(t => t['class'] == 'to-do');
+    let tasksToDo = addedTasks.filter(t => t['class'] == 'to-do');
     document.getElementById('to-do').innerHTML = '';
     for (i = 0; i < tasksToDo.length; i++) {
         const task = tasksToDo[i];
@@ -28,7 +28,7 @@ function updateTodo() {
 }
 
 function updateInProgress() {
-    let tasksInProgress = tasks.filter(t => t['class'] == 'in-progress');
+    let tasksInProgress = addedTasks.filter(t2 => t2['class'] == 'in-progress');
     document.getElementById('in-progress').innerHTML = '';
     for (i = 0; i < tasksInProgress.length; i++) {
         const task = tasksInProgress[i];
@@ -38,7 +38,7 @@ function updateInProgress() {
 }
 
 function updateInReview() {
-    let tasksInReview = tasks.filter(t => t['class'] == 'in-review');
+    let tasksInReview = addedTasks.filter(t3 => t3['class'] == 'in-review');
     document.getElementById('in-review').innerHTML = '';
     for (i = 0; i < tasksInReview.length; i++) {
         const task = tasksInReview[i];
@@ -48,7 +48,7 @@ function updateInReview() {
 }
 
 function updateApproved() {
-    let tasksApproved = tasks.filter(t => t['class'] == 'approved');
+    let tasksApproved = addedTasks.filter(t4 => t4['class'] == 'approved');
     document.getElementById('approved').innerHTML = '';
     for (i = 0; i < tasksApproved.length; i++) {
         const task = tasksApproved[i];
@@ -89,7 +89,7 @@ function backgroundColors(task, i) {
 /*show Details of clicked Task*/
 
 function  showAddedTask(i) {
-    let task = tasks[i];
+    let task = addedTasks[i];
     generateZoomTaskHTML(task);
     document.getElementById('zoom-task').classList.remove('scale-0');
     document.getElementById('zoom-task').classList.remove('opacity-0');
@@ -138,7 +138,8 @@ function allowDrop(event) {
 }
 
 function moveTo(category) {
-    tasks[currentElement]['class'] = category;
+    currentElement --; // reduce currentElement by 1 increment to match addedTasks index
+    addedTasks[currentElement]['class'] = category;
     updateHTML();
 }
 
@@ -152,7 +153,7 @@ function loadJSON(key) {
     }
 }
 
-function saveTasksToLocal(key, tasks) {
-    // let tasksAsString = JSON.stringify(array);
-    localStorage.setItem(key, JSON.stringify(tasks))
+function saveChanges() {
+    // let tasksAsString = JSON.stringify(addedTasks);
+    localStorage.setItem('TASKS', JSON.stringify(addedTasks));
 }
