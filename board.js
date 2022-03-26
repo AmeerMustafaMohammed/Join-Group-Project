@@ -169,7 +169,7 @@ function backgroundColors(task, i) {
 
 function taskHTML(task, i) {
     return /*html*/ `
-        <div class="added-task" draggable="true" ondragstart="startDragging(${task['id']})">
+        <div class="added-task" draggable="true" onclick="zoomTask(${task})" ondragstart="startDragging(${task['id']})">
             <div class="top-added">
                 <span id="h-${i}" class="h-added">${task['title']}</span>
                 <span class="category-added">${task['category']}</span>
@@ -180,6 +180,26 @@ function taskHTML(task, i) {
                 <span class="assigned-added">${task['assigned-to']}</span>
             </div>
         </div>`;
+}
+
+function zoomTask(task) {
+    document.getElementById('zoom-task').innerHTML = zoomTaskHTML(task);
+    document.getElementById('zoom-task').classList.remove('scale-0');
+    document.getElementById('zoom-task').classList.add('scale-1');
+    document.getElementById('zoom-task').classList.remove('opacity-0');
+    document.getElementById('zoom-task').classList.add('opacity-1');
+}
+
+function backToNormal() {
+    document.getElementById('zoom-task').classList.remove('scale-1');
+    document.getElementById('zoom-task').classList.add('scale-0');
+    document.getElementById('zoom-task').classList.remove('opacity-1');
+    document.getElementById('zoom-task').classList.add('opacity-0');
+}
+
+function zoomTaskHTML(task) {
+    return /*html*/ `
+    <div class="dings"></div>`;
 }
 
 /*drag function*/
