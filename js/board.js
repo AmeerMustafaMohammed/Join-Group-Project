@@ -103,6 +103,33 @@ function backgroundColors(task, i) {
 
 /*show Details of clicked Task*/
 
+function showAddedTask(i) {
+    let task = addedTasks[i];
+    generateZoomTaskHTML(task, i);
+    document.getElementById('zoom-task').classList.remove('scale-0');
+    document.getElementById('zoom-task').classList.remove('opacity-0');
+    document.getElementById('zoom-task').classList.add('opacity-1');
+    document.getElementById('zoom-task').classList.add('z-index-2000');
+    document.getElementById('zoom-task').classList.add('scale-1');
+    document.getElementById(`added-task-${i}`).classList.remove('scale-0');
+    document.getElementById(`added-task-${i}`).classList.add('scale-1-delayed');
+}
+
+function generateZoomTaskHTML(task, i) {
+    document.getElementById('zoom-task').innerHTML = '';
+    document.getElementById('zoom-task').innerHTML = taskZoomHTML(task, i);
+}
+
+function closeZoomTask() {
+    document.getElementById('zoom-task').classList.add('scale-0');
+    document.getElementById('zoom-task').classList.add('opacity-0');
+    document.getElementById('zoom-task').classList.remove('opacity-1');
+    document.getElementById('zoom-task').classList.remove('z-index-2000');
+    document.getElementById('zoom-task').classList.remove('scale-1');
+    document.getElementById(`added-task-${i}`).classList.add('scale-0');
+    document.getElementById(`added-task-${i}`).classList.remove('scale-1-delayed');
+}
+
 function taskZoomHTML(task, i) {
     return /*html*/ `
         <div id="added-task-${i}" class="added-task-zoom scale-0">
@@ -127,32 +154,7 @@ function taskZoomHTML(task, i) {
         </div>`;
 }
 
-function showAddedTask(i) {
-    let task = addedTasks[i];
-    generateZoomTaskHTML(task, i);
-    document.getElementById('zoom-task').classList.remove('scale-0');
-    document.getElementById('zoom-task').classList.remove('opacity-0');
-    document.getElementById('zoom-task').classList.add('opacity-1');
-    document.getElementById('zoom-task').classList.add('z-index-2000');
-    document.getElementById('zoom-task').classList.add('scale-1');
-    document.getElementById(`added-task-${i}`).classList.remove('scale-0');
-    document.getElementById(`added-task-${i}`).classList.add('scale-1-delayed');
-}
-
-function generateZoomTaskHTML(task, i) {
-    document.getElementById('zoom-task').innerHTML = '';
-    document.getElementById('zoom-task').innerHTML = taskZoomHTML(task, i);
-}
-
-function backToNormal() {
-    document.getElementById('zoom-task').classList.add('scale-0');
-    document.getElementById('zoom-task').classList.add('opacity-0');
-    document.getElementById('zoom-task').classList.remove('opacity-1');
-    document.getElementById('zoom-task').classList.remove('z-index-2000');
-    document.getElementById('zoom-task').classList.remove('scale-1');
-    document.getElementById(`added-task-${i}`).classList.add('scale-0');
-    document.getElementById(`added-task-${i}`).classList.remove('scale-1-delayed');
-}
+/*delete functionality*/
 
 function openDeleteModal(i) {
     document.getElementById(`delete-modal-${i}`).classList.remove('scale-0');
@@ -173,10 +175,7 @@ function closeDeleteModal(i) {
 function deleteFromBoard(i) {
     let deleted = addedTasks[i];
     deleted['class'] = 'deleted';
-    // deletedTasks.push(deleted);
-    // console.log('deleted is', deleted);
-    // addedTasks.splice(i, 1);
-    saveChanges()
+    saveChanges();
     closeDeleteModal(i);
     updateHTML();
 }
@@ -186,9 +185,29 @@ function openTrash() {
     document.getElementById('bin-container').classList.add('task-container');
     document.getElementById('bin-container').classList.add('deleted-bg');
     document.getElementById('bin-container').innerHTML =   /*html*/     ` 
-    <p id="h-deleted"><i>DELETED</i></p>
+    <div class="trash-top"><p id="h-deleted"><i>TRASH</i></p>
+        <p class="clear-btn" onclick="event.stopPropagation(), clearTrash()">Clear</p>
+        <p class="clear-btn" onclick="event.stopPropagation(), closeTrash()">Close</p>
+    </div>
     <div class="task" id="deleted"></div>`;
     updateDeleted();
+}
+
+function closeTrash() {
+    document.getElementById('bin-container').classList.remove('task-container');
+    document.getElementById('bin-container').classList.remove('deleted-bg');
+    document.getElementById('bin-container').innerHTML = '<div class="bin" id="bin"><i>Trash</i></div>';
+}
+
+function clearTrash() {
+    for(i = 0; i < addedTasks.length; i++) {
+        const task = addedTasks[i];
+        if(task['class'] == 'deleted') {
+            addedTasks.splice(i);
+        }
+    }
+    saveChanges();
+    updateHTML();
 }
 
 /*drag function*/

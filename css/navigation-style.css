@@ -1,12 +1,13 @@
 #navigation {
     background-color: #0A0A1A;
+    font-family: 'Inter', sans-serif;
     width: 150px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     border-right: 1px #EBECF0 solid;

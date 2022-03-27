@@ -15,7 +15,16 @@ body {
     margin-right: 5%;
     margin-left: 5%;
     /*background-color: #191A1E;*/
+    margin-bottom: 16px;
+    width: calc(100% - 150px);
+    margin-left: 150px;
+}
 
+@media only screen and (max-width: 600px) {
+    .content {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
 }
 
 .task-container {
@@ -34,7 +43,8 @@ body {
     font-family: 'Kanit', sans-serif;
     color: black;
     letter-spacing: 0.7px;
-    margin-bottom: 0;border-radius: 5px 5px 0px 0px;
+    margin-bottom: 0;
+    border-radius: 4px;
 }
 
 .task {
@@ -214,6 +224,28 @@ body {
     background-color:rgba(0, 0, 0, 0.09);
 }
 
+.trash-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.clear-btn {
+    background-color: #d0d0d2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0 !important;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.clear-btn:hover {
+    transition: all 225ms ease-in-out;
+    background-color: #eaeaeb;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
 
 
 /*js controlled classes*/
