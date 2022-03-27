@@ -1,8 +1,9 @@
 let addedTasks = [];
+
 let currentElement;
 
 
-function init() {
+function initboard() {
     addedTasks = JSON.parse(localStorage.getItem('TASKS'));
     updateHTML();
 }
@@ -14,6 +15,9 @@ function updateHTML() {
     updateInProgress();
     updateInReview();
     updateApproved();
+    if(document.getElementById('deleted')) {
+        updateDeleted();
+    }
     saveChanges();
 }
 
@@ -22,7 +26,7 @@ function updateTodo() {
     document.getElementById('to-do').innerHTML = '';
     for (i = 0; i < tasksToDo.length; i++) {
         const task = tasksToDo[i];
-        document.getElementById('to-do').innerHTML += taskHTML(task, i);
+        document.getElementById('to-do').innerHTML += taskHTML(task);
         backgroundColors(task, i);
     }
 }
@@ -32,7 +36,7 @@ function updateInProgress() {
     document.getElementById('in-progress').innerHTML = '';
     for (i = 0; i < tasksInProgress.length; i++) {
         const task = tasksInProgress[i];
-        document.getElementById('in-progress').innerHTML += taskHTML(task, i);
+        document.getElementById('in-progress').innerHTML += taskHTML(task);
         backgroundColors(task, i);
     }
 }
@@ -42,7 +46,7 @@ function updateInReview() {
     document.getElementById('in-review').innerHTML = '';
     for (i = 0; i < tasksInReview.length; i++) {
         const task = tasksInReview[i];
-        document.getElementById('in-review').innerHTML += taskHTML(task, i);
+        document.getElementById('in-review').innerHTML += taskHTML(task);
         backgroundColors(task, i);
     }
 }
@@ -52,12 +56,23 @@ function updateApproved() {
     document.getElementById('approved').innerHTML = '';
     for (i = 0; i < tasksApproved.length; i++) {
         const task = tasksApproved[i];
-        document.getElementById('approved').innerHTML += taskHTML(task, i);
+        document.getElementById('approved').innerHTML += taskHTML(task);
         backgroundColors(task, i);
     }
 }
 
-function taskHTML (task, i) {
+function updateDeleted() {
+    let tasksDeleted = addedTasks.filter(t5 => t5['class'] == 'deleted');
+    document.getElementById('deleted').innerHTML = '';
+    for (i = 0; i < tasksDeleted.length; i++) {
+        const task = tasksDeleted[i];
+        document.getElementById('deleted').innerHTML += taskHTML(task);
+        backgroundColors(task, i);
+    }
+}
+
+function taskHTML(task) {
+    let i = addedTasks.indexOf(task); // i = task index for function calls
     return /*html*/ `
     <div onclick="showAddedTask(${i})" class="added-task" draggable="true" ondragstart="startDragging(${task['id']})">
             <div class="top-added">
@@ -88,21 +103,12 @@ function backgroundColors(task, i) {
 
 /*show Details of clicked Task*/
 
-function  showAddedTask(i) {
-    let task = addedTasks[i];
-    generateZoomTaskHTML(task);
-    document.getElementById('zoom-task').classList.remove('scale-0');
-    document.getElementById('zoom-task').classList.remove('opacity-0');
-    document.getElementById('zoom-task').classList.add('opacity-1');
-    document.getElementById('zoom-task').classList.add('z-index-2000');
-    document.getElementById('zoom-task').classList.add('scale-1');
-}
-
-function taskZoomHTML(task) {
+function taskZoomHTML(task, i) {
     return /*html*/ `
-        <div class="added-task-zoom">
+        <div id="added-task-${i}" class="added-task-zoom scale-0">
             <div class="top-zoom">
                 <h2 id="h-${i}"><b>${task['title']}</b></h2>
+                <div class="delete" onclick="event.stopPropagation(), openDeleteModal(${i})"></div>
             </div>
             <span>Category: ${task['category']}</span>
             <span>Description: ${task['description']}</span>
@@ -111,12 +117,31 @@ function taskZoomHTML(task) {
                 <span>${task['due-date']}</span>
                 <span>${task['assigned-to']}</span>
             </div>
+            <div id="delete-modal-${i}" class="delete-modal scale-0 opacity-0">
+            <h3>Delete this task from Board?</h3>
+            <div>
+                <button id="delete-btn-${i}" class="btn" onclick="event.stopPropagation(), deleteFromBoard(${i})">Delete</button>
+                <button id="cancel-btn-${i}" class="btn">Cancel</button>
+            </div>
+            </div>
         </div>`;
 }
 
-function generateZoomTaskHTML(task) {
+function showAddedTask(i) {
+    let task = addedTasks[i];
+    generateZoomTaskHTML(task, i);
+    document.getElementById('zoom-task').classList.remove('scale-0');
+    document.getElementById('zoom-task').classList.remove('opacity-0');
+    document.getElementById('zoom-task').classList.add('opacity-1');
+    document.getElementById('zoom-task').classList.add('z-index-2000');
+    document.getElementById('zoom-task').classList.add('scale-1');
+    document.getElementById(`added-task-${i}`).classList.remove('scale-0');
+    document.getElementById(`added-task-${i}`).classList.add('scale-1-delayed');
+}
+
+function generateZoomTaskHTML(task, i) {
     document.getElementById('zoom-task').innerHTML = '';
-    document.getElementById('zoom-task').innerHTML = taskZoomHTML(task);
+    document.getElementById('zoom-task').innerHTML = taskZoomHTML(task, i);
 }
 
 function backToNormal() {
@@ -125,6 +150,45 @@ function backToNormal() {
     document.getElementById('zoom-task').classList.remove('opacity-1');
     document.getElementById('zoom-task').classList.remove('z-index-2000');
     document.getElementById('zoom-task').classList.remove('scale-1');
+    document.getElementById(`added-task-${i}`).classList.add('scale-0');
+    document.getElementById(`added-task-${i}`).classList.remove('scale-1-delayed');
+}
+
+function openDeleteModal(i) {
+    document.getElementById(`delete-modal-${i}`).classList.remove('scale-0');
+    document.getElementById(`delete-modal-${i}`).classList.remove('opacity-0');
+    document.getElementById(`delete-modal-${i}`).classList.add('scale-1');
+    document.getElementById(`delete-modal-${i}`).classList.remove('opacity-1');
+    document.getElementById('zoom-task').classList.remove('z-index-2000');
+}
+
+function closeDeleteModal(i) {
+    document.getElementById(`delete-modal-${i}`).classList.add('scale-0');
+    document.getElementById(`delete-modal-${i}`).classList.add('opacity-0');
+    document.getElementById(`delete-modal-${i}`).classList.remove('scale-1');
+    document.getElementById(`delete-modal-${i}`).classList.remove('opacity-1');
+    document.getElementById('zoom-task').classList.add('z-index-2000');
+}
+
+function deleteFromBoard(i) {
+    let deleted = addedTasks[i];
+    deleted['class'] = 'deleted';
+    // deletedTasks.push(deleted);
+    // console.log('deleted is', deleted);
+    // addedTasks.splice(i, 1);
+    saveChanges()
+    closeDeleteModal(i);
+    updateHTML();
+}
+
+function openTrash() {
+    document.getElementById('bin').classList.add('d-none');
+    document.getElementById('bin-container').classList.add('task-container');
+    document.getElementById('bin-container').classList.add('deleted-bg');
+    document.getElementById('bin-container').innerHTML =   /*html*/     ` 
+    <p id="h-deleted"><i>DELETED</i></p>
+    <div class="task" id="deleted"></div>`;
+    updateDeleted();
 }
 
 /*drag function*/
@@ -138,7 +202,7 @@ function allowDrop(event) {
 }
 
 function moveTo(category) {
-    currentElement --; // reduce currentElement by 1 increment to match addedTasks index
+    currentElement--; // reduce currentElement by 1 increment to match addedTasks index
     addedTasks[currentElement]['class'] = category;
     updateHTML();
 }

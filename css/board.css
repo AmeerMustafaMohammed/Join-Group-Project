@@ -8,7 +8,7 @@ body {
 
 .content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     height: 90vh;
     flex-wrap: wrap;
@@ -19,7 +19,7 @@ body {
 }
 
 .task-container {
-    background-color: #E2E4E6;
+    background-color: rgba(226, 228, 230, 0.8);
     border-radius: 4px;
     margin: 24px;
     transition: All 250ms ease-in-out;
@@ -46,6 +46,33 @@ body {
 
 .task:hover {
     opacity: 0.9;
+}
+
+.bin {
+    font-family: 'Kanit', sans-serif;
+    letter-spacing: .7px;
+    background-color: rgba(226, 228, 230, 0.5);
+    min-height: 80px;
+    width: 5em;
+    border-radius: 4px;
+    margin-left: 5em;
+    margin-right: 5em;
+    opacity: 0.85;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    background-image: url(../img/board-img/delete-white.png);
+    background-size: 24px;
+    background-position: right top;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+.bin:hover {
+    background-image: url(../img/board-img/delete.png);
+    transition: all 280ms ease-in-out;
+    color: black;
+    background-color: rgba(226, 228, 230, 0.8);
 }
 
 .added-task {
@@ -116,7 +143,6 @@ body {
     padding: 14px;
     width: 40%;
     height: 40%;
-    cursor: pointer;
     position: relative;
     background:white;
     margin-bottom: 10px;
@@ -124,18 +150,71 @@ body {
     border-radius: 4px;
     margin: 0 auto;
     display: grid;
-    place-items: center;
+    place-items: flex-start legacy;
+    position: relative;
 }
 
 .top-zoom {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid lightgrey;
 }
 
 .bottom-zoom {
     display: flex;
     justify-content: space-between;
     width: 80%;
+
 }
+
+.delete {
+    background-image: url(../img/board-img/delete.png);
+    background-size: cover;
+    height: 32px;
+    width: 32px;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.delete-modal {
+    height: 180px;
+    width: 360px;
+    background-color: rgba(181, 181, 181, 0.7);
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    text-align: center;
+    display: grid;
+    place-items: center;
+    backdrop-filter: blur(10px);
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    
+}
+
+.btn {
+    height: 2em;
+    width: 5em;
+    border: none;
+    border-radius: 3px;
+    margin-left: 16px;
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    transition: all 225ms ease-in-out;
+    background-color:rgba(0, 0, 0, 0.09);
+}
+
+
 
 /*js controlled classes*/
 
@@ -160,12 +239,17 @@ body {
 }
 
 .scale-0 {
-    transition: transform 225ms ease-in-out;
+    transition: transform 250ms ease-in-out;
     transform: scale(0);
 }
 
 .scale-1 {
-    transition: transform 225ms ease-in-out;
+    transition: transform 250ms ease-in-out;
+    transform: scale(1);
+}
+
+.scale-1-delayed {
+    transition: transform 2000ms ease-in-out;
     transform: scale(1);
 }
 
@@ -183,12 +267,17 @@ body {
     z-index: 2000
 }
 
+.deleted-bg {
+    background-color: rgba(151, 158, 165, 0.9) !important;
+}
+
 body {
     position: relative !important;
 }
 
 #zoom-task {
     background-color: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(4px);
     position: fixed;
     top: -200px;
     left: -200px;
@@ -202,10 +291,6 @@ body {
     align-items: center;
 }
 
-#test {
-    height: 100vh;
-    width: 100vw;
-    background-color: black;
-    position: absolute;
-    top: 0;
+#h-deleted {
+    color: #6f1616;
 }
