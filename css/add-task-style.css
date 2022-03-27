@@ -146,3 +146,45 @@ select {
     height: 40px;
     width: 100px;
 }
+
+
+/* RESPONSIV */
+
+@media only screen and (max-width: 1000px) {
+    body {
+        margin-left: 200px;
+        margin-right: 0px;
+        background-image: url(/img/add-task-img/img/pexels-pixabay-221189.jpg);
+    }
+    #add-task-container {
+        margin-right: 0px;
+        max-width: none;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    body {
+        margin-left: 160px;
+        background-image: url(/img/add-task-img/img/pexels-pixabay-221189.jpg);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        margin: 0px;
+        background-image: url(/img/add-task-img/img/pexels-pixabay-221189.jpg);
+    }
+    #add-task-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 0;
+    }
+    .big-title {
+        display: none;
+    }
+    .group-name {
+        display: none;
+    }
+}
