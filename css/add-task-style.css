@@ -6,11 +6,11 @@ body {
 
 /* GROUP-NAME */
 
-.group-name {
+#GroupName {
+    color: beige;
     position: absolute;
-    left: 0;
-    top: 0;
-    color: white;
+    left: 40px;
+    bottom: 20px;
 }
 
 
