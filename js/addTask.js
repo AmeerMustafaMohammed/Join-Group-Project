@@ -11,8 +11,8 @@ function init() {
         allUser = loadJSON('allUser');
     }
     showAllUsers();
-    loadAllUser()
-
+    loadAllUser();
+    loadGroupName();  //name of registered group is loaded from login.js
 }
 
 /*  USERS */

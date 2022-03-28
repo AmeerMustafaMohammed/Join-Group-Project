@@ -3,7 +3,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(./img-login/desk.jpg);
+    background-image: url(../img/img-login/desk.jpg);
     background-size: cover;
     color: white;
     font-family: 'Roboto', sans-serif;
@@ -111,7 +111,7 @@ h1 {
     position: absolute;
     left: calc(50% - 500px);
     top: calc(50% - 300px);
-    background-color: #272727;
+    background-color: #11111b;
     border: 1px solid #646464;
     border-radius: 20px;
 }

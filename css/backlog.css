@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+    background-color: #11111b;
+    display: flex;
+    flex-direction: row-reverse;
+    font-family: 'Inter', sans-serif;
+}
+
+#backlog_container {
+    padding: 20px;
+    width: calc(100vw - 250px);
+    box-sizing: border-box;    
+}
+
+h2 {
+    margin: 0;
+    color: white;
+}
+
+.task_card_backlog {
+    margin: 24px auto;
+    padding: 16px;
+    min-height: 120px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(226, 228, 230, 0.8);
+    border-radius: 20px;
+    font-size: 18px;
+    box-sizing: border-box;
+}
+
+#backlog_header {
+    margin-top: 200px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-size: 22px;
+}
+
+@media (max-width: 1000px) {
+    #backlog_container {
+        width: calc(100vw - 180px);
+    }
+
+    #backlog_header {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 600px) {
+    #backlog_container {
+        width: 100%;
+    }
+}
