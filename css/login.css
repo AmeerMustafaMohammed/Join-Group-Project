@@ -105,6 +105,7 @@ h1 {
 }
 
 .find_group {
+    padding: 8px;
     height: 600px;
     width: 1000px;
     position: relative;
@@ -114,6 +115,7 @@ h1 {
     background-color: #11111b;
     border: 1px solid #646464;
     border-radius: 20px;
+    box-sizing: border-box;
 }
 
 .group_search {
@@ -210,4 +212,133 @@ h1 {
 #user_login span {
     margin-top: 40px;
     margin-bottom: 20px;
+}
+
+@media (max-width: 1400px) {
+    .find_group {
+        width: 800px;
+        left: calc(50% - 400px);
+    }
+
+    .card_logo {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+    }
+
+    .find_group_logo {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+    }
+}
+
+@media (max-width: 950px) {
+    .find_group {
+        width: 600px;
+        left: calc(50% - 300px);
+    }
+}
+
+@media (max-width: 700px) {
+    h1 {
+        font-size: 50px !important;
+    }
+
+    .find_group {
+        height: 85% !important;
+        width: 400px;
+        left: calc(50% - 200px);
+        top: calc(50% - 42.5%) !important;
+    }
+}
+
+@media (max-width: 500px) {
+    h1 {
+        font-size: 34px !important;
+    }
+    
+    .find_group {
+        width: 300px;
+        left: calc(50% - 150px);
+    }
+
+    .find_group h2 {
+        font-size: 24px !important;
+    }
+
+    .find_group_name {
+        height: 40px !important;
+        width: 220px !important;
+    }
+
+    .find_group_name::placeholder {
+        font-size: 16px;
+    }
+
+    .not_found {
+        font-size: 14px;
+    }
+
+    #sign_up {
+        width: 180px
+    }
+}
+
+@media (max-width: 500px) {
+    h1 {
+        font-size: 26px !important;
+    }
+
+    .find_group {
+        width: 260px;
+        left: calc(50% - 130px);
+    }
+}
+
+@media (max-width: 950px),
+       (max-height: 800px) {
+    .start_buttons {
+        height: 70px;
+        width: 200px;
+        font-size: 24px;
+    }
+
+    #login_logo {
+        height: 40px;
+        width: 40px;
+        object-fit: contain;
+    }
+
+    h1 {
+        font-size: 60px;
+    }
+
+    #login_container span {
+        font-size: 24px;
+    }
+
+    .find_group h2 {
+        margin-top: 100px;
+        font-size: 32px;
+    }
+
+    .find_group_name {
+        height: 50px;
+        width: 300px;
+        font-size: 20px;
+    }
+
+    .card_button {
+        height: 50px;
+        width: 140px;
+        font-size: 20px;
+    }
+}
+
+@media (max-height: 900px) {
+    .find_group {
+        height: 400px;
+        top: calc(50% - 200px);
+    }
 }
