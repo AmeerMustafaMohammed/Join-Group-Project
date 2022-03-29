@@ -6,11 +6,11 @@ body {
 
 /* GROUP-NAME */
 
-.group-name {
+#GroupName {
+    color: beige;
     position: absolute;
-    left: 0;
-    top: 0;
-    color: white;
+    left: 40px;
+    bottom: 20px;
 }
 
 
@@ -150,41 +150,81 @@ select {
 
 /* RESPONSIV */
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1200px) {
     body {
         margin-left: 200px;
         margin-right: 0px;
         background-image: url(/img/add-task-img/img/pexels-pixabay-221189.jpg);
     }
+    .big-title {
+        left: 50%;
+    }
     #add-task-container {
-        margin-right: 0px;
+        margin-right: 20px;
+        margin-left: 80px;
         max-width: none;
     }
 }
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 850px) {
     body {
         margin-left: 160px;
         background-image: url(/img/add-task-img/img/pexels-pixabay-221189.jpg);
     }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
     body {
-        margin: 0px;
+        margin: 0;
         background-image: url(/img/add-task-img/img/pexels-pixabay-221189.jpg);
     }
+    /* HEAD */
+    .big-title {
+        display: none;
+    }
+    .group-name {
+        display: none;
+    }
+    /* ADD TASK CONTAINER */
     #add-task-container {
+        margin: 0;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         width: 100%;
         margin-top: 0;
     }
-    .big-title {
-        display: none;
+    #add-task-container>div {
+        width: 100%;
     }
-    .group-name {
-        display: none;
+    /* LEFT */
+    .container-left>div {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    /* RIGHT */
+    .container-right>div {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .asign-member {
+        width: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .asign-member img {
+        padding-bottom: 10px;
+    }
+    /* ELEMENTS */
+    input {
+        width: 80%;
+    }
+    select {
+        width: 70%;
     }
 }
