@@ -40,6 +40,7 @@ body {
     display: flex;
     justify-content: space-around;
     max-width: 70%;
+    min-height: 80%;
     height: fit-content;
     margin-top: 120px;
     padding: 5px;
@@ -62,13 +63,15 @@ body {
     padding-top: 20px;
 }
 
-.asign-member {
+.asign-member,
+.add-category-cild {
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
-.asign-member img {
+.asign-member img,
+.add-category img {
     width: 40px;
     height: 40px;
     padding-left: 10px;
@@ -81,7 +84,8 @@ body {
 
 /* NEU USER CONTAINER */
 
-#add-user-container {
+#add-user-container,
+#add-Category-container {
     position: absolute;
     z-index: 100;
     background-color: rgb(0, 0, 0, 0.5);
@@ -94,7 +98,8 @@ body {
     align-items: center;
 }
 
-.add-neu-user {
+.add-neu-user,
+.add-neu-Category {
     height: 40%;
     width: 40%;
     background-color: white;
@@ -106,13 +111,15 @@ body {
     position: absolute;
 }
 
-.add-neu-user input {
+.add-neu-user input,
+.add-neu-Category input {
     height: 40px;
     width: 300px;
     margin-bottom: 20px;
 }
 
-.add-neu-user button {
+.add-neu-user button,
+.add-neu-Category button {
     height: 40px;
     width: 100px;
 }
