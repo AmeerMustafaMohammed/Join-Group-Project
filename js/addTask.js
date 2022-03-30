@@ -11,8 +11,8 @@ function init() {
         allUser = loadJSON('allUser');
     }
     showAllUsers();
-    loadAllUser()
-
+    loadAllUser();
+    loadGroupName(); //name of registered group is loaded from login.js
 }
 
 /*  USERS */
@@ -69,7 +69,7 @@ function catchInputs() {
 
     //RIGHT
     let neuDate = document.getElementById('add-date').value;
-    let urgency = document.getElementById('add-category').value;
+    let urgency = document.getElementById('add-urgency').value;
     let toMember = document.getElementById('asign-member').value;
 
     addTaskToTasks(neuTitle, neuCategory, neuDescription, neuDate, urgency, toMember);

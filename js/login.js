@@ -5,8 +5,16 @@ let user;  //username
 let currentUser = [];  //combination of group and user
 
 
-function init() {
-    loadArrays();
+function initLogin() {
+    loadItems();
+}
+
+
+function loadGroupName() {
+    loadItems();
+    if (currentUser) {
+        document.getElementById('group_name_add_tasks').innerHTML = currentUser['group'];
+    }
 }
 
 
@@ -63,7 +71,7 @@ function createAccount() {
     let username = document.getElementById('create_username_input').value;
 
     users.push(username);
-    saveArrays();
+    saveItems();
     user = username;
 
     setUser();
@@ -75,6 +83,8 @@ function setUser() {
         'group': requestedGroup,
         'username': user
     }
+
+    saveItems();
 }
 
 
@@ -94,25 +104,34 @@ function addGroup() {
     let groupName = document.getElementById('found_group_name_input').value;
 
     groups.push(groupName);
-    saveArrays();
+    saveItems();
     requestedGroup = groupName;
     hide('found_group_container');
     show('user_login');
 }
 
 
-function saveArrays() {
+function saveItems() {
     localStorage.setItem('groups', JSON.stringify(groups));
     localStorage.setItem('users', JSON.stringify(users));
+
+    if (currentUser) {
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    }
 }
 
 
-function loadArrays() {
+function loadItems() {
     let groupsAsString = localStorage.getItem('groups');
     let usersAsString = localStorage.getItem('users');
+    let savedUser = localStorage.getItem('currentUser');
 
     if (groupsAsString && usersAsString) {
         groups = JSON.parse(groupsAsString);
         users = JSON.parse(usersAsString);
+    }
+
+    if (savedUser) {
+        currentUser = JSON.parse(savedUser);
     }
 }

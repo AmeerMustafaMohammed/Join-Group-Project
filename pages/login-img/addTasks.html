@@ -7,15 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/add-task-style.css">
+    <link rel="icon" href="./joinlogo.ico">
+    <!--favicon-->
     <script src="/js/include.js"></script>
     <script src="/js/addTask.js"></script>
+    <script src="../../js/login.js"></script>
 </head>
 
 <body onload="includeHTML(); init()">
     <div w3-include-html="navigation.html"></div>
     <!-- GROUP NAME -->
     <div class="group-name">
-        <h4 id="GroupName">Angemeldt: </h4>
+        <span id="GroupName">Angemeldet: <span id="group_name_add_tasks"></span></span>
     </div>
 
     <!-- BIG- TITLE -->
@@ -57,7 +60,7 @@
 
             <div class="add-urgency">
                 <h2>URGENCY</h2>
-                <select id="add-category">
+                <select id="add-urgency">
                    <option value="High">High</option>
                    <option value="Medium">Medium</option>
                    <option value="Low">Low</option>
