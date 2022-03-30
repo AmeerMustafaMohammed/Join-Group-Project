@@ -22,6 +22,11 @@ body {
     background-color: #e78637;
 }
 
+.categories_backlog {
+    font-size: 22px;
+    font-weight: 900;
+}
+
 #backlog_container {
     padding: 20px;
     width: calc(100vw - 250px);

@@ -31,7 +31,7 @@ function cardTemplate(currentTask, i) {
       <div class="task_card_backlog">
       <div class="category_backlog" id="category_container_backlog${i}"></div>
           <span>${currentTask['assigned-to']}</span>
-          <span>${currentTask['category']}</span>
+          <span class="categories_backlog">${currentTask['category']}</span>
           <span>${currentTask['description']}</span>
       </div>
     `;
