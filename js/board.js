@@ -2,6 +2,8 @@ let addedTasks = [];
 
 let currentElement;
 
+let editing = false;
+
 
 function initboard() {
     addedTasks = JSON.parse(localStorage.getItem('TASKS'));
@@ -109,6 +111,7 @@ function generateZoomTaskHTML(task, i) {
 }
 
 function closeZoomTask() {
+    if(editing == false) {
     document.getElementById('zoom-task').classList.add('scale-0');
     document.getElementById('zoom-task').classList.add('opacity-0');
     document.getElementById('zoom-task').classList.remove('opacity-1');
@@ -116,11 +119,12 @@ function closeZoomTask() {
     document.getElementById('zoom-task').classList.remove('scale-1');
     document.getElementById(`added-task-${i}`).classList.add('scale-0');
     document.getElementById(`added-task-${i}`).classList.remove('scale-1-delayed');
+    }
 }
 
 function taskZoomHTML(task, i) {
     return /*html*/ `
-        <div id="added-task-${i}" class="added-task-zoom scale-0">
+        <div id="added-task-${i}" class="added-task-zoom scale-0" style="position: relative">
             <div class="top-zoom">
                 <h2 id="h-${i}"><b>${task['title']}</b></h2>
                 <div class="delete" onclick="event.stopPropagation(), openDeleteModal(${i})"></div>
@@ -139,6 +143,7 @@ function taskZoomHTML(task, i) {
                 <button id="cancel-btn-${i}" class="btn">Cancel</button>
             </div>
             </div>
+            <p style="position: absolute; top: 24px; right: 48px" onclick="event.stopPropagation(), editTask(${i})">Edit</p>
         </div>`;
 }
 
@@ -197,6 +202,87 @@ function clearTrash() {
     }
     saveChanges();
     updateHTML();
+}
+
+/*edit functionality*/
+
+function editTask(i) { // i = index of element in addedTasks
+    editing = true; // to prevent zoom window from closing ba clicking in it
+    document.getElementById(`added-task-${i}`).innerHTML = editTaskHTML(i);
+}
+
+function editTaskHTML(i) { // i = index of element in addedTasks
+    let task = addedTasks[i];
+    return /*html*/ `
+            <div class="top-zoom">
+                <h2 id="h-${i}"><input type="text" id="add-title"></b></h2>
+            </div>
+            <span>Category:  
+                <select id="add-category" value="${task['category']}">
+                    <option value="IT">IT</option>
+                    <option value="Controling">Controling</option>
+                    <option value="Web">Web</option>
+                    <option value="Backend">Backend</option>
+                </select>
+            </span>
+            <span style="display: flex; align-items: center">Description: 
+                <textarea id="add-description" cols="30" rows="10" placeholder="${task['description']}">
+                </textarea>
+            </span>
+            <span>Urgency:                
+                <select id="add-urgency">
+                   <option value="High">High</option>
+                   <option value="Medium">Medium</option>
+                   <option value="Low">Low</option>
+               </select>
+            </span>
+            <div class="bottom-zoom">
+                <span><input type="date" id="add-date" value="2022-03-25"></span>
+                <span>                    
+                    <select id="asign-member">
+                        <option value="max musterman">Max Musterman</option>
+                    </select></span>
+            </div>
+            <p style="position: absolute; top: 24px; right: 96px" onclick="cancelEdit()">Cancel</p>
+            <p style="position: absolute; top: 24px; right: 48px" onclick="saveEdit(${i})">Save</p>`;
+}
+
+function cancelEdit() {
+    editing = false;
+    closeZoomTask();
+}
+
+function saveEdit(i) {
+    catchInputs(i);
+}
+
+function catchInputs(i) {
+
+    let neuTitle = document.getElementById('add-title').value;
+    let neuCategory = document.getElementById('add-category').value;
+    let neuDescription = document.getElementById('add-description').value;
+    let neuDate = document.getElementById('add-date').value;
+    let urgency = document.getElementById('add-urgency').value;
+    let toMember = document.getElementById('asign-member').value;
+
+    saveChangesToTask(neuTitle, neuCategory, neuDescription, neuDate, urgency, toMember, i);
+
+}
+
+
+function saveChangesToTask(neuTitle, neuCategory, neuDescription, neuDate, urgency, toMember, i) {
+
+    let task = addedTasks[i];
+    task['title'] = neuTitle;
+    task['category'] = neuCategory;
+    task['description'] = neuDescription;
+    task['due-date'] = neuDate;
+    task['urgency'] = urgency;
+    task['assigned-to'] = toMember;
+    saveChanges();
+    updateHTML();
+    editing = false;
+    closeZoomTask();
 }
 
 /*drag function*/
