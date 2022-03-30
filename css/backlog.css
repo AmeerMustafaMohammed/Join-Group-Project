@@ -6,6 +6,22 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
+.backlog_IT {
+    background-color: #00a759;
+}
+
+.backlog_controlling {
+    background-color: #ad42ad;
+}
+
+.backlog_web {
+    background-color: #4673d3;
+}
+
+.backlog_backend {
+    background-color: #e78637;
+}
+
 #backlog_container {
     padding: 20px;
     width: calc(100vw - 250px);
@@ -20,20 +36,30 @@ h2 {
 
 .task_card_backlog {
     padding: 24px;
-    margin: 24px 0;
+    margin: 10px 0;
     min-height: 120px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
     background-color: rgba(226, 228, 230, 0.8);
-    border-radius: 20px;
+    border-radius: 10px;
     font-size: 18px;
     box-sizing: border-box;
 }
 
+.category_backlog {
+    height: 100%;
+    width: 12px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 10px 0 0 10px;
+}
+
 #backlog_header {
-    margin-top: 200px;
+    margin: 200px 0 20px;
     display: flex;
     justify-content: space-between;
     color: white;
@@ -55,7 +81,7 @@ h2 {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     #backlog_container {
         width: 100%;
     }
