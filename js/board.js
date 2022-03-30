@@ -15,9 +15,6 @@ function updateHTML() {
     updateInProgress();
     updateInReview();
     updateApproved();
-    if(document.getElementById('deleted')) {
-        updateDeleted();
-    }
     saveChanges();
 }
 
@@ -27,7 +24,7 @@ function updateTodo() {
     for (i = 0; i < tasksToDo.length; i++) {
         const task = tasksToDo[i];
         document.getElementById('to-do').innerHTML += taskHTML(task);
-        backgroundColors(task, i);
+        backgroundColors(task);
     }
 }
 
@@ -37,7 +34,7 @@ function updateInProgress() {
     for (i = 0; i < tasksInProgress.length; i++) {
         const task = tasksInProgress[i];
         document.getElementById('in-progress').innerHTML += taskHTML(task);
-        backgroundColors(task, i);
+        backgroundColors(task);
     }
 }
 
@@ -47,7 +44,7 @@ function updateInReview() {
     for (i = 0; i < tasksInReview.length; i++) {
         const task = tasksInReview[i];
         document.getElementById('in-review').innerHTML += taskHTML(task);
-        backgroundColors(task, i);
+        backgroundColors(task);
     }
 }
 
@@ -57,17 +54,7 @@ function updateApproved() {
     for (i = 0; i < tasksApproved.length; i++) {
         const task = tasksApproved[i];
         document.getElementById('approved').innerHTML += taskHTML(task);
-        backgroundColors(task, i);
-    }
-}
-
-function updateDeleted() {
-    let tasksDeleted = addedTasks.filter(t5 => t5['class'] == 'deleted');
-    document.getElementById('deleted').innerHTML = '';
-    for (i = 0; i < tasksDeleted.length; i++) {
-        const task = tasksDeleted[i];
-        document.getElementById('deleted').innerHTML += taskHTML(task);
-        backgroundColors(task, i);
+        backgroundColors(task);
     }
 }
 
@@ -85,7 +72,8 @@ function taskHTML(task) {
 
 /*change headline bg-colors according to urgency*/
 
-function backgroundColors(task, i) {
+function backgroundColors(task) {
+    let i = addedTasks.indexOf(task); 
     let h = document.getElementById(`h-${i}`);
 
     if (task['urgency'] == 'High') {
@@ -147,7 +135,7 @@ function taskZoomHTML(task, i) {
             <div id="delete-modal-${i}" class="delete-modal scale-0 opacity-0">
             <h3>Delete this task from Board?</h3>
             <div>
-                <button id="delete-btn-${i}" class="btn" onclick="event.stopPropagation(), deleteFromBoard(${i})">Delete</button>
+                <button id="delete-btn-${i}" class="btn" onclick="event.stopPropagation(), deleteFromBoard(${i}), closeZoomTask(${i})">Delete</button>
                 <button id="cancel-btn-${i}" class="btn">Cancel</button>
             </div>
             </div>
@@ -174,6 +162,7 @@ function closeDeleteModal(i) {
 
 function deleteFromBoard(i) {
     let deleted = addedTasks[i];
+    deleted['deleted-from'] = deleted['class'];
     deleted['class'] = 'deleted';
     saveChanges();
     closeDeleteModal(i);

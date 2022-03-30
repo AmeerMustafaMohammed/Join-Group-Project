@@ -87,7 +87,8 @@ function addTaskToTasks(neuTitle, neuCategory, neuDescription, neuDate, urgency,
         'due-date': neuDate,
         'urgency': urgency,
         'assigned-to': toMember,
-        'class': 'to-do'
+        'class': 'to-do',
+        'deleted-from': null
     }
     tasks.push(task)
     saveJson('TASKS', tasks)

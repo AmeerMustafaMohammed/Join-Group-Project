@@ -1,7 +1,7 @@
 body {
     margin: 0;
     box-sizing: border-box;
-    background-image: url(../img/board-img/board-bg-3.jpg);
+    background-image: url(../img/add-task-img/img/pexels-pixabay-221189.jpg);
     background-size: cover;
     overflow-x: hidden;
 } 
@@ -56,33 +56,6 @@ body {
 
 .task:hover {
     opacity: 0.9;
-}
-
-.bin {
-    font-family: 'Kanit', sans-serif;
-    letter-spacing: .7px;
-    background-color: rgba(226, 228, 230, 0.5);
-    min-height: 80px;
-    width: 5em;
-    border-radius: 4px;
-    margin-left: 5em;
-    margin-right: 5em;
-    opacity: 0.85;
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-    background-image: url(../img/board-img/delete-white.png);
-    background-size: 24px;
-    background-position: right top;
-    background-repeat: no-repeat;
-    color: white;
-}
-
-.bin:hover {
-    background-image: url(../img/board-img/delete.png);
-    transition: all 280ms ease-in-out;
-    color: black;
-    background-color: rgba(226, 228, 230, 0.8);
 }
 
 .added-task {
@@ -230,24 +203,6 @@ body {
     align-items: center;
 }
 
-.clear-btn {
-    background-color: #d0d0d2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 0 !important;
-    margin-right: 10px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.clear-btn:hover {
-    transition: all 225ms ease-in-out;
-    background-color: #eaeaeb;
-    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-}
-
-
 /*js controlled classes*/
 
 .high-urgency {
@@ -321,8 +276,4 @@ body {
     z-index: 1000;
     display: flex;
     align-items: center;
-}
-
-#h-deleted {
-    color: #6f1616;
 }

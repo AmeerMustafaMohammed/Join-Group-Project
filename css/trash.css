@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+
+
+.trash-content {
+    margin-left: 180px;
+    padding: 2em;
+}
+
+.trash-header {
+    display: flex;
+    margin-left: 180px;
+    padding: 2em;
+    margin-bottom: -65px;
+}
+
+.deleted-tasks-container{
+    display: flex;
+    align-items: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background-color: #B5B6B8;
+    border-radius: 4px;
+    padding: 2px 6px 2px 6px;
+    min-width: fit-content;
+}
+
+.back-to-board {
+    margin-left: 1.3em;
+    margin-right: 1.3em;
+    height: 1.4em;
+    width: 1.4em;
+    background-image: url(../img/trash-img/archive.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.delete-for-ever {
+    margin-left: 1em;
+    margin-right: 1em;
+    height: 1.4em;
+    width: 1.4em;
+    background-image: url(../img/trash-img/delete-for-ever.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+
+@media only screen and (min-width: 1000px) {
+    .trash-content {
+        margin-left: 250px;
+    }
+    .trash-header {
+        margin-left: 250px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .trash-content {
+        margin: 0;
+    }
+    .trash-header {
+        margin: 0;
+    }
+}
+
