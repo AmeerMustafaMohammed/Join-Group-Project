@@ -4,6 +4,11 @@ let tasks = [];
 let allUser = [];
 let allCategories = [];
 
+/* TEST */
+console.log("COLORS")
+console.log(randomColor())
+
+
 function init() {
     if (loadJSON('TASKS')) {
         tasks = loadJSON('TASKS');
@@ -122,7 +127,8 @@ function addNeuCategory() {
     let neuCategory = document.getElementById('neu-Category').value;
     let Category = {
         name: neuCategory,
-        gruppe: currentGroup
+        gruppe: currentGroup,
+        color: randomColor()
     }
 
     allCategories.push(Category)
@@ -176,4 +182,28 @@ function showDiv(id) {
 
 function hideDiv(id) {
     document.getElementById(id).style = "display:none;"
+}
+
+
+/* GET RANDOM COLOR */
+
+function randomColor() {
+    let suffix = "0123456789ABCDEF";
+    let color = "#";
+
+    for (let i = 0; i < 6; i++) {
+        color = color + suffix[Math.floor(Math.random() * 16)];
+    }
+
+    /* CHECKING COLOR */
+    for (let j = 0; j < allCategories.length; j++) {
+        if (allCategories[j].gruppe == currentGroup) {
+            if (allCategories[j].color == color) {
+                randomColor();
+            }
+        }
+    }
+
+    return color;
+
 }
