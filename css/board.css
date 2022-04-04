@@ -1,14 +1,95 @@
 body {
     margin: 0;
     box-sizing: border-box;
-    background-image: url(../img/add-task-img/img/pexels-pixabay-221189.jpg);
+    background-color:#25323c;
     background-size: cover;
     overflow-x: hidden;
 } 
 
+input[type=text] {
+    border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 1em;
+    font-weight: 700;
+}
+
 textarea {
-    height: 2em;
-    resize: none
+    font-family: 'Inter', sans-serif;
+    width: 67%;
+    font-size: 0.95em;
+    margin-top: 12px;
+    margin-left: 4px;
+    padding-left: 4px;
+    border-radius: 4px;
+    height: 4em; 
+    resize: none;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    background-color:rgba(226, 228, 230, 0.5);
+}
+
+span {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+
+.select-dropdown,
+.select-dropdown * {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+}
+
+.select-dropdown {
+  position: relative;
+  background-color: #E6E6E6;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+}
+
+.select-dropdown select {
+  font-size: 1rem;
+  font-weight: normal;
+  max-width: 100%;
+  padding: 8px 24px 8px 10px;
+  border: none;
+  background-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  border: none;
+}
+
+.select-dropdown select:active, .select-dropdown select:focus {
+  outline: none;
+  box-shadow: none;
+  outline: none;
+  border: none;
+}
+
+.select-dropdown:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 0;
+  height: 0;
+  margin-top: -2px;
+  border-top: 5px solid #aaa;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  outline: none;
+  border: none;
 }
 
 .content {
@@ -47,7 +128,7 @@ textarea {
     width: 60%;
     font-family: 'Kanit', sans-serif;
     color: black;
-    letter-spacing: 0.7px;
+    letter-spacing: 0.2px; 
     margin-bottom: 0;
     border-radius: 4px;
 }
@@ -153,7 +234,7 @@ textarea {
 .bottom-zoom {
     display: flex;
     justify-content: space-between;
-    width: 80%;
+    width: 100%;
 
 }
 

@@ -110,18 +110,6 @@ function generateZoomTaskHTML(task, i) {
     document.getElementById('zoom-task').innerHTML = taskZoomHTML(task, i);
 }
 
-function closeZoomTask() {
-    if(editing == false) {
-    document.getElementById('zoom-task').classList.add('scale-0');
-    document.getElementById('zoom-task').classList.add('opacity-0');
-    document.getElementById('zoom-task').classList.remove('opacity-1');
-    document.getElementById('zoom-task').classList.remove('z-index-2000');
-    document.getElementById('zoom-task').classList.remove('scale-1');
-    document.getElementById(`added-task-${i}`).classList.add('scale-0');
-    document.getElementById(`added-task-${i}`).classList.remove('scale-1-delayed');
-    }
-}
-
 function taskZoomHTML(task, i) {
     return /*html*/ `
         <div id="added-task-${i}" class="added-task-zoom scale-0" style="position: relative">
@@ -139,12 +127,22 @@ function taskZoomHTML(task, i) {
             <div id="delete-modal-${i}" class="delete-modal scale-0 opacity-0">
             <h3>Delete this task from Board?</h3>
             <div>
-                <button id="delete-btn-${i}" class="btn" onclick="event.stopPropagation(), deleteFromBoard(${i}), closeZoomTask(${i})">Delete</button>
+                <button id="delete-btn-${i}" class="btn" onclick="event.stopPropagation(), deleteFromBoard(${i}), closeZoomTask()">Delete</button>
                 <button id="cancel-btn-${i}" class="btn">Cancel</button>
             </div>
             </div>
-            <p style="position: absolute; top: 24px; right: 48px" onclick="event.stopPropagation(), editTask(${i})">Edit</p>
+            <p style="position: absolute; top: 24px; right: 48px; cursor: pointer" onclick="event.stopPropagation(), editTask(${i})">Edit</p>
         </div>`;
+}
+
+function closeZoomTask() {
+    if(editing == false) {
+    document.getElementById('zoom-task').classList.add('scale-0');
+    document.getElementById('zoom-task').classList.add('opacity-0');
+    document.getElementById('zoom-task').classList.remove('opacity-1');
+    document.getElementById('zoom-task').classList.remove('z-index-2000');
+    document.getElementById('zoom-task').classList.remove('scale-1');
+    }
 }
 
 /*delete functionality*/
@@ -204,52 +202,65 @@ function clearTrash() {
     updateHTML();
 }
 
-/*edit functionality*/
+/* edit functionality */
 
 function editTask(i) { // i = index of element in addedTasks
-    editing = true; // to prevent zoom window from closing ba clicking in it
+    editing = true; // to prevent zoom window from closing by clicking in it
     document.getElementById(`added-task-${i}`).innerHTML = editTaskHTML(i);
+    setCategory(i);
+    setUrgency(i);
 }
 
 function editTaskHTML(i) { // i = index of element in addedTasks
     let task = addedTasks[i];
     return /*html*/ `
             <div class="top-zoom">
-                <h2 id="h-${i}"><input type="text" id="add-title"></b></h2>
+                <h2 id="h-${i}"><input type="text" id="add-title" value="${task['title']}"></b></h2>
             </div>
             <span>Category:  
-                <select id="add-category" value="${task['category']}">
-                    <option value="IT">IT</option>
-                    <option value="Controling">Controling</option>
-                    <option value="Web">Web</option>
-                    <option value="Backend">Backend</option>
+                <select id="add-category" class="select-dropdown">
+                    <option class="category-options" value="IT">IT</option>
+                    <option class="category-options" value="Controling">Controling</option>
+                    <option class="category-options" value="Web">Web</option>
+                    <option class="category-options" value="Backend">Backend</option>
                 </select>
             </span>
             <span style="display: flex; align-items: center">Description: 
-                <textarea id="add-description" cols="30" rows="10" placeholder="${task['description']}">
-                </textarea>
+                <textarea id="add-description" cols="30" rows="10">${task['description']}</textarea>
             </span>
             <span>Urgency:                
-                <select id="add-urgency">
-                   <option value="High">High</option>
-                   <option value="Medium">Medium</option>
-                   <option value="Low">Low</option>
+                <select id="add-urgency" class="select-dropdown">
+                   <option class="urgency-options" value="High">High</option>
+                   <option class="urgency-options" value="Medium">Medium</option>
+                   <option class="urgency-options" value="Low">Low</option>
                </select>
             </span>
             <div class="bottom-zoom">
                 <span><input type="date" id="add-date" value="2022-03-25"></span>
                 <span>                    
-                    <select id="asign-member">
+                    <select id="asign-member"  class="select-dropdown">
                         <option value="max musterman">Max Musterman</option>
                     </select></span>
             </div>
-            <p style="position: absolute; top: 24px; right: 96px" onclick="cancelEdit()">Cancel</p>
-            <p style="position: absolute; top: 24px; right: 48px" onclick="saveEdit(${i})">Save</p>`;
+            <p style="position: absolute; top: 24px; right: 96px; cursor: pointer" onclick="cancelEdit(${i})">Cancel</p>
+            <p style="position: absolute; top: 24px; right: 48px; cursor: pointer" onclick="saveEdit(${i})">Save</p>`;
 }
 
-function cancelEdit() {
+function setCategory(i) { 
+    let task = addedTasks[i];
+    let options = document.querySelectorAll('.category-options'); // looping through category options to find option equal to task['category']
+    options.forEach(option => {if(option.value == task['category']){option.selected = true}}); // setting category as seleected
+}
+
+function setUrgency(i) { 
+    let task = addedTasks[i];
+    let urgencyOptions = document.querySelectorAll('.urgency-options'); // looping through category options to find option equal to task['category']
+    urgencyOptions.forEach(urgencyOption => {if(urgencyOption.value == task['urgency']){urgencyOption.selected = true}}); // setting category as seleected
+}
+
+function cancelEdit(i) {
     editing = false;
-    closeZoomTask();
+    closeZoomTask(i);
 }
 
 function saveEdit(i) {
@@ -257,21 +268,17 @@ function saveEdit(i) {
 }
 
 function catchInputs(i) {
-
     let neuTitle = document.getElementById('add-title').value;
     let neuCategory = document.getElementById('add-category').value;
     let neuDescription = document.getElementById('add-description').value;
     let neuDate = document.getElementById('add-date').value;
     let urgency = document.getElementById('add-urgency').value;
     let toMember = document.getElementById('asign-member').value;
-
     saveChangesToTask(neuTitle, neuCategory, neuDescription, neuDate, urgency, toMember, i);
-
 }
 
 
 function saveChangesToTask(neuTitle, neuCategory, neuDescription, neuDate, urgency, toMember, i) {
-
     let task = addedTasks[i];
     task['title'] = neuTitle;
     task['category'] = neuCategory;
@@ -312,6 +319,5 @@ function loadJSON(key) {
 }
 
 function saveChanges() {
-    // let tasksAsString = JSON.stringify(addedTasks);
     localStorage.setItem('TASKS', JSON.stringify(addedTasks));
 }

@@ -12,6 +12,7 @@
         rel="stylesheet">
     <script src="../../js/include.js"></script>
     <script src="../../js/board.js" defer></script>
+    <script src="../../js/navigation.js"></script>
     <title>Board</title>
     <link rel="stylesheet" href="/css/board.css">
     <link rel="icon" href="./joinlogo.ico">  <!--favicon-->
@@ -21,20 +22,20 @@
     <div w3-include-html="navigation.html"></div>
     <div class="content" style="padding-left: calc(100vw - 100%);">
         <div id="to-do-container" class="task-container" ondrop="moveTo('to-do')" ondragover="allowDrop(event)">
-            <p id="h-to-do"><i>TO DO</i></p>
+            <p id="h-to-do">TO DO</p>
             <div class="task" id="to-do"></div>
         </div>
         <div id="in-progress-container" class="task-container" ondrop="moveTo('in-progress')"
             ondragover="allowDrop(event)">
-            <p id="h-in-progress"><i>IN PROGRESS</i></p>
+            <p id="h-in-progress">IN PROGRESS</p>
             <div class="task" id="in-progress"></div>
         </div>
         <div id="in-review-container" class="task-container" ondrop="moveTo('in-review')" ondragover="allowDrop(event)">
-            <p id="h-in-review"><i>IN REVIEW</i></p>
+            <p id="h-in-review">IN REVIEW</p>
             <div class="task" id="in-review"></div>
         </div>
         <div id="approved-container" class="task-container" ondrop="moveTo('approved')" ondragover="allowDrop(event)">
-            <p id="h-approved"><i>APPROVED</i></p>
+            <p id="h-approved">APPROVED</p>
             <div class="task" id="approved"></div>
         </div>
     </div>

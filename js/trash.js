@@ -24,24 +24,28 @@ function deletedtaskHTML(task) {
     let i = addedTasks.indexOf(task);
     return /*html*/ `
     <div class="deleted-tasks-container">
-        <div style="width: 10%; min-width: 180px">
-            <p>${capitalize(task['deleted-from'])}</p>
+        <div class="keys">
+            <div style="width: 10%; min-width: 120px">
+                <p>${capitalize(task['deleted-from'])}</p>
+            </div>
+            <div style="width: 10%; min-width: 120px">
+                <p>${task['category']}</p>
+            </div>
+            <div style="width: 10%; min-width: 120px">
+                <p>${task['title']}</p>
+            </div>
+            <div style="width: 20%; min-width: 150px">
+                <p>${task['description']}</p>
+            </div>
+            <div style="width: 10%; min-width: 120px">
+                <p>${task['assigned-to']}</p>
+            </div>
         </div>
-        <div style="width: 10%; min-width: 180px">
-            <p>${task['category']}</p>
+        <div class="options">
+            <div class="back-to-board" onclick="addToBoard(${i})" title="add to board">
+            </div>
+            <div class="delete-for-ever" onclick="deleteForEver(${i})" title="delete irrevocably"></div>
         </div>
-        <div style="width: 10%; min-width: 180px">
-            <p>${task['title']}</p>
-        </div>
-        <div style="width: 20%; min-width: 200px">
-            <p>${task['description']}</p>
-        </div>
-        <div style="width: 10%; min-width: 150px">
-            <p>${task['assigned-to']}</p>
-        </div>
-        <div class="back-to-board" onclick="addToBoard(${i})" title="add to board">
-        </div>
-        <div class="delete-for-ever" onclick="deleteForEver(${i})" title="delete irrevocably"></div>
     </div>`;
 }
 
