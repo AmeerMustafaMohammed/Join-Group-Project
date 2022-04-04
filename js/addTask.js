@@ -10,8 +10,8 @@ console.log(randomColor())
 
 
 function init() {
-    if (loadJSON('TASKS')) {
-        tasks = loadJSON('TASKS');
+    if (loadJSON('TasksBacklog')) {
+        tasks = loadJSON('TasksBacklog');  //##############TOBIAS: ich habe die ganzen Funktionen so umgeändert, dass die Tasks ins Backlog und nicht auf das Board gepusht werden, von wo aus man sie weiter zum Board pushen kann##############
     }
     if (loadJSON('allUser')) {
         allUser = loadJSON('allUser');
@@ -26,17 +26,17 @@ function init() {
 }
 
 /* ADDING TASKS *********************** */
-function catchInputs() {
+function catchInputs(i) {
     //LEFT
 
-    let neuTitle = document.getElementById('add-title').value;
-    let neuCategory = document.getElementById('add-category').value;
-    let neuDescription = document.getElementById('add-description').value;
+    let neuTitle = tasks[i]['title'];
+    let neuCategory = tasks[i]['category'];
+    let neuDescription = tasks[i]['description'];
 
     //RIGHT
-    let neuDate = document.getElementById('add-date').value;
-    let urgency = document.getElementById('add-urgency').value;
-    let toMember = document.getElementById('asign-member').value;
+    let neuDate = tasks[i]['due-date'];
+    let urgency = tasks[i]['urgency'];
+    let toMember = tasks[i]['assigned-to'];
 
     addTaskToTasks(neuTitle, neuCategory, neuDescription, neuDate, urgency, toMember);
 
