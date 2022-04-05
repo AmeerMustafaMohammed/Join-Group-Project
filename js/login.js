@@ -1,8 +1,8 @@
-let groups = [];  //all founded groups
-let users = [];  //all user names
-let requestedGroup;  //group, which was requested
-let user;  //username
-let currentUser = [];  //combination of group and user
+let groups = []; //all founded groups
+let users = []; //all user names
+let requestedGroup; //group, which was requested
+let user; //username
+let currentUser = []; //combination of group and user
 
 
 function initLogin() {
@@ -35,8 +35,7 @@ function checkIfGroupExists() {
         goToLogin(group);
     } else if (group.length == 0) {
         showWarningEmptyInput();
-    }
-    else {
+    } else {
         showWarningGroupNotExisting();
     }
 }
@@ -116,7 +115,7 @@ function saveItems() {
     localStorage.setItem('users', JSON.stringify(users));
 
     if (currentUser) {
-    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
     }
 }
 

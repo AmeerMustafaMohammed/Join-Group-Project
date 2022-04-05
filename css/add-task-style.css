@@ -92,6 +92,7 @@ body {
     width: 40px;
     height: 40px;
     padding-left: 10px;
+    cursor: pointer;
 }
 
 .form-buttons {
@@ -150,15 +151,21 @@ body {
 
 /* FORM ELEMENTS */
 
+textarea {
+    cursor: pointer;
+}
+
 button {
     height: 30px;
     background-color: green;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 input {
     width: 200px;
     height: 20px;
+    cursor: pointer;
 }
 
 h2 {
@@ -169,6 +176,7 @@ h2 {
 select {
     height: 40px;
     width: 100px;
+    cursor: pointer;
 }
 
 
