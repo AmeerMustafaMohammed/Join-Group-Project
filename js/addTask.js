@@ -4,14 +4,12 @@ let tasks = [];
 let allUser = [];
 let allCategories = [];
 
-/* TEST */
-console.log("COLORS")
-console.log(randomColor())
+
 
 
 function init() {
     if (loadJSON('TasksBacklog')) {
-        tasks = loadJSON('TasksBacklog');  //##############TOBIAS: ich habe die ganzen Funktionen so umgeändert, dass die Tasks ins Backlog und nicht auf das Board gepusht werden, von wo aus man sie weiter zum Board pushen kann##############
+        tasks = loadJSON('TasksBacklog'); //##############TOBIAS: ich habe die ganzen Funktionen so umgeändert, dass die Tasks ins Backlog und nicht auf das Board gepusht werden, von wo aus man sie weiter zum Board pushen kann##############
     }
     if (loadJSON('allUser')) {
         allUser = loadJSON('allUser');
@@ -25,6 +23,11 @@ function init() {
 
 }
 
+/* SHOWING CurrentUser ON  Member -Selector */
+
+function showCurrentUser() {
+
+}
 /* ADDING TASKS *********************** */
 function catchInputs(i) {
     //LEFT
@@ -39,7 +42,7 @@ function catchInputs(i) {
     let toMember = tasks[i]['assigned-to'];
 
     addTaskToTasks(neuTitle, neuCategory, neuDescription, neuDate, urgency, toMember);
-    
+
 }
 
 
@@ -79,7 +82,7 @@ function showAllUsers() {
         for (let i = 0; i < allUser.length; i++) {
             if (allUser[0]['gruppe'] == currentGroup) {
                 memberOptions.innerHTML += `
-                <option value="max musterman">${allUser[i]['name']}</option>
+                <option value="${allUser[i]['name']}">${allUser[i]['name']}</option>
                 `;
             }
         }
@@ -116,7 +119,7 @@ function showallCategories() {
         for (let i = 0; i < allCategories.length; i++) {
             if (allCategories[0]['gruppe'] == currentGroup) {
                 categoryOptions.innerHTML += `
-                <option value="category">${allCategories[i]['name']}</option>
+                <option value="${allCategories[i]['name']}">${allCategories[i]['name']}</option>
                 `;
             }
         }
