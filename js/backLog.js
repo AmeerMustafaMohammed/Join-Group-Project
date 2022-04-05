@@ -53,11 +53,13 @@ function addTaskToTasksBacklog(neuTitle, neuCategory, neuDescription, neuDate, u
 
 function renderTasksBacklog() {
     document.getElementById('backlog_content').innerHTML = '';
+    document.getElementById('backlog_button_container').innerHTML = '';
 
     for (let i = 0; i < tasksBacklog.length; i++) {
         let currentTask = tasksBacklog[i];
 
         document.getElementById('backlog_content').innerHTML += cardTemplate(currentTask, i);
+        document.getElementById('backlog_button_container').innerHTML += /*html*/`<button onclick="saveJson('TASKS', tasks), deleteTaskBacklog(${i})" class="add_to_board_btn">Add task to board</button>`
         addCategories(i);
     }
 }
@@ -68,11 +70,10 @@ function cardTemplate(currentTask, i) {
     <div class="task_container_backlog">
       <div class="task_card_backlog">
       <div class="category_backlog" id="category_container_backlog${i}"></div>
-          <span>${currentTask['assigned-to']}</span>
-          <span class="categories_backlog">${currentTask['category']}</span>
-          <span>${currentTask['description']}</span>
+          <span class="span_backlog user_container_backlog bold_backlog">${currentTask['assigned-to']}</span>
+          <span class="span_backlog category_container_backlog bold_backlog">${currentTask['category']}</span>
+          <div class="span_backlog details_container_backlog details_backlog">${currentTask['description']}</div>
       </div>
-      <button onclick="catchInputs(${i}), deleteTaskBacklog(${i})" class="add_to_board_btn">Add task to board</button>
     </div>
     `;
 }
@@ -95,7 +96,9 @@ function addCategories(i) {
         categoryContainer.classList.add('backlog_controlling');
     } else if (category == 'Web') {
         categoryContainer.classList.add('backlog_web');
-    } else {
+    } else if (category == 'Backend') {
         categoryContainer.classList.add('backlog_backend');
+    } else {
+        categoryContainer.classList.add('new_category_backlog');
     }
 }

@@ -39,7 +39,7 @@ function catchInputs(i) {
     let toMember = tasks[i]['assigned-to'];
 
     addTaskToTasks(neuTitle, neuCategory, neuDescription, neuDate, urgency, toMember);
-
+    
 }
 
 
