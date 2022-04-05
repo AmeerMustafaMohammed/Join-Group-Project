@@ -1,9 +1,20 @@
 let tasksBacklog = [];
-
+let isOpened = false;
+let tasksArchive = [];
 
 function initBacklog() {
     loadTasksBacklog();
+    loadTasksArchive();
     renderTasksBacklog();
+}
+
+
+function loadTasksArchive() {
+    let archiveAsString = localStorage.getItem('TasksArchive');
+
+    if(archiveAsString) {
+        tasksArchive = JSON.parse(archiveAsString);
+    }
 }
 
 
@@ -34,7 +45,6 @@ function catchInputsBacklog() {
 
 
 function addTaskToTasksBacklog(neuTitle, neuCategory, neuDescription, neuDate, urgency, toMember) {
-
     let task = {
         'id': idAutoincrement(),
         'title': neuTitle,
@@ -47,7 +57,10 @@ function addTaskToTasksBacklog(neuTitle, neuCategory, neuDescription, neuDate, u
         'deleted-from': null
     };
     tasks.push(task);
+    loadTasksArchive();
+    tasksArchive.push(task);
     saveJson('TasksBacklog', tasks);
+    saveJson('TasksArchive', tasksArchive);
 }
 
 
@@ -59,7 +72,7 @@ function renderTasksBacklog() {
         let currentTask = tasksBacklog[i];
 
         document.getElementById('backlog_content').innerHTML += cardTemplate(currentTask, i);
-        document.getElementById('backlog_button_container').innerHTML += /*html*/`<button onclick="saveJson('TASKS', tasks), deleteTaskBacklog(${i})" class="add_to_board_btn">Add task to board</button>`
+        document.getElementById('backlog_button_container').innerHTML += /*html*/`<button onclick="saveJson('TASKS', tasksArchive), deleteTaskBacklog(${i}), hideButtonContainerBacklog()" class="add_to_board_btn" id="add_to_board_button${i}">Add task to board</button>`  //!!!!!Hat einen Bug
         addCategories(i);
     }
 }
@@ -72,7 +85,10 @@ function cardTemplate(currentTask, i) {
       <div class="category_backlog" id="category_container_backlog${i}"></div>
           <span class="span_backlog user_container_backlog bold_backlog">${currentTask['assigned-to']}</span>
           <span class="span_backlog category_container_backlog bold_backlog">${currentTask['category']}</span>
-          <div class="span_backlog details_container_backlog details_backlog">${currentTask['description']}</div>
+          <div class="span_backlog details_container_backlog details_backlog">
+          <span>${currentTask['description']}</span>
+          <img onclick="showButtonBacklog(${i})" class="responsive_button_backlog" src="/img/backlog-img/menu.svg">   
+        </div>
       </div>
     </div>
     `;
@@ -83,6 +99,38 @@ function deleteTaskBacklog(i) {
     tasksBacklog.splice(i, 1);
     saveJson('TasksBacklog', tasksBacklog);
     renderTasksBacklog();
+}
+
+
+function showButtonBacklog(i) {
+   if (!isOpened) {
+   document.getElementById('backlog_button_container').style = 'display: unset';
+   document.getElementById('add_to_board_button' + i).style = 'display: unset';
+   } else {
+    document.getElementById('backlog_button_container').style = 'display: none';
+    document.getElementById('add_to_board_button' + i).style = 'display: none';
+   }
+
+   isOpened = !isOpened;
+}
+
+
+function hideButtonContainerBacklog() {
+   if (window.screen.width < 800) {
+       document.getElementById('backlog_button_container').style = 'display: none';
+   } else {
+       return;
+   }
+}
+
+
+function saveTasksBacklog() {
+    let tasksArrayAsString = localStorage.getItem('TASKS');
+    let tasksArray;
+    if (tasksArrayAsString) {
+       tasksArray = JSON.parse(tasksArrayAsString);
+    }
+    saveJson('TASKS', tasks);
 }
 
 

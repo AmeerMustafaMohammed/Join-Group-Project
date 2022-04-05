@@ -35,7 +35,6 @@ body {
     width: 33.33%;
     display: flex;
     flex-wrap: wrap;
-    overflow: hidden;
     word-wrap: break-word;
 }
 
@@ -49,7 +48,7 @@ body {
 
 .details_container_backlog {
     justify-content: flex-end;
-    flex-wrap: wrap;
+    overflow-wrap: anywhere;
 }
 
 #backlog_container {
@@ -130,6 +129,7 @@ h2 {
     height: 80px;
     width: 300px;
     align-self: center;
+    display: unset !important;
     font-size: 22px;
     color: white;
     background-color: #1e51c0;
@@ -140,6 +140,16 @@ h2 {
 
 .add_to_board_btn:hover {
     background-color: #3763c2;
+}
+
+.responsive_button_backlog {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: calc(50% - 25px);
+    right: 0;
+    cursor: pointer;
+    display: none;
 }
 
 @media (max-width: 1800px) {
@@ -194,6 +204,16 @@ h2 {
 
     #backlog_button_container {
         display: none;
+        z-index: 1;
+    }
+
+    .responsive_button_backlog {
+        display: unset;
+    }
+
+    .details_container_backlog {
+        padding-right: 10px;
+        box-sizing: border-box;
     }
 
     .task_card_backlog {
