@@ -10,7 +10,10 @@ function initboard() {
     updateHTML();
 }
 
-/*generate Task Container HTML*/
+/**
+ * This function is used to update the HTML of all Cards
+ * 
+ */
 
 function updateHTML() {
     updateTodo();
@@ -19,6 +22,13 @@ function updateHTML() {
     updateApproved();
     saveChanges();
 }
+
+/**
+ * The following 4 functions filter through addedTasks 
+ * checking the value at the key 'class'
+ * and render HTML into the related Card
+ * 
+ */
 
 function updateTodo() {
     let tasksToDo = addedTasks.filter(t => t['class'] == 'to-do');
@@ -60,8 +70,15 @@ function updateApproved() {
     }
 }
 
+/**
+ * This function returns the HTML of the added Tasks
+ * 
+ * @param {JSON} task - This is an object containing details about the task
+ * 
+ */
+
 function taskHTML(task) {
-    let i = addedTasks.indexOf(task); // i = task index for function calls
+    let i = addedTasks.indexOf(task); 
     return /*html*/ `
     <div onclick="showAddedTask(${i})" class="added-task" draggable="true" ondragstart="startDragging(${task['id']})">
             <div class="top-added">
@@ -72,7 +89,13 @@ function taskHTML(task) {
         </div>`;
 }
 
-/*change headline bg-colors according to urgency*/
+/**
+ * This function changes the background color  
+ * of the headline of a task 
+ * according to its urgency
+ * 
+ * @param {JSON} task - This is an object containing details about the task
+ */
 
 function backgroundColors(task) {
     let i = addedTasks.indexOf(task); 
@@ -91,7 +114,12 @@ function backgroundColors(task) {
     }
 }
 
-/*show Details of clicked Task*/
+/**
+ * This function opens a more detailed view of the clicked task
+ * 
+ * @param {number} i - This number is unique for every task, it is equal to the index of the task in addedTasks
+ *                      
+ */
 
 function showAddedTask(i) {
     let task = addedTasks[i];
@@ -105,10 +133,26 @@ function showAddedTask(i) {
     document.getElementById(`added-task-${i}`).classList.add('scale-1-delayed');
 }
 
+/**
+ * This function generates the HTML of the div
+ * that displays the detailed view of the clicked task
+ * 
+ * @param {JSON} task - This is an object containing details about the task
+ * @param {number} i - This number is unique for every task, it is equal to the index of the task in addedTasks
+ */
+
 function generateZoomTaskHTML(task, i) {
     document.getElementById('zoom-task').innerHTML = '';
     document.getElementById('zoom-task').innerHTML = taskZoomHTML(task, i);
 }
+
+/**
+ * This function returns the HTML of the div
+ * that displays the detailed view of the clicked task
+ * 
+ * @param {JSON} task - This is an object containing details about the task
+ * @param {number} i - This number is unique for every task, it is equal to the index of the task in addedTasks
+ */
 
 function taskZoomHTML(task, i) {
     return /*html*/ `
@@ -136,7 +180,9 @@ function taskZoomHTML(task, i) {
 }
 
 function closeZoomTask() {
-    if(editing == false) {
+    //the if statement prevents the zoomed Task from closing
+    //when clicking in the edit view
+    if(editing == false) { 
     document.getElementById('zoom-task').classList.add('scale-0');
     document.getElementById('zoom-task').classList.add('opacity-0');
     document.getElementById('zoom-task').classList.remove('opacity-1');
@@ -146,6 +192,12 @@ function closeZoomTask() {
 }
 
 /*delete functionality*/
+
+/**
+ * The following 2 functions open and close the delete modal
+ * 
+ * @param {number} i - This number is unique for every task, it is equal to the index of the task in addedTasks
+ */
 
 function openDeleteModal(i) {
     document.getElementById(`delete-modal-${i}`).classList.remove('scale-0');
@@ -163,6 +215,14 @@ function closeDeleteModal(i) {
     document.getElementById('zoom-task').classList.add('z-index-2000');
 }
 
+/**
+ * This function changes the values of the keys
+ * 'deleted-from' and 'class' of the task at addedTasks[i]
+ * and updates the HTML of the cards 
+ * 
+ * @param {number} i - This number is unique for every task, it is equal to the index of the task in addedTasks
+ */
+
 function deleteFromBoard(i) {
     let deleted = addedTasks[i];
     deleted['deleted-from'] = deleted['class'];
@@ -172,46 +232,29 @@ function deleteFromBoard(i) {
     updateHTML();
 }
 
-function openTrash() {
-    document.getElementById('bin').classList.add('d-none');
-    document.getElementById('bin-container').classList.add('task-container');
-    document.getElementById('bin-container').classList.add('deleted-bg');
-    document.getElementById('bin-container').innerHTML =   /*html*/     ` 
-    <div class="trash-top"><p id="h-deleted"><i>TRASH</i></p>
-        <p class="clear-btn" onclick="event.stopPropagation(), clearTrash()">Clear</p>
-        <p class="clear-btn" onclick="event.stopPropagation(), closeTrash()">Close</p>
-    </div>
-    <div class="task" id="deleted"></div>`;
-    updateDeleted();
-}
-
-function closeTrash() {
-    document.getElementById('bin-container').classList.remove('task-container');
-    document.getElementById('bin-container').classList.remove('deleted-bg');
-    document.getElementById('bin-container').innerHTML = '<div class="bin" id="bin"><i>Trash</i></div>';
-}
-
-function clearTrash() {
-    for(i = 0; i < addedTasks.length; i++) {
-        const task = addedTasks[i];
-        if(task['class'] == 'deleted') {
-            addedTasks.splice(i);
-        }
-    }
-    saveChanges();
-    updateHTML();
-}
-
 /* edit functionality */
 
-function editTask(i) { // i = index of element in addedTasks
+/**
+ * This function changes the HTML of the clicked task 
+ * to enable editing
+ * 
+ * @param {number} i - This number is unique for every task, it is equal to the index of the task in addedTasks
+ */
+
+function editTask(i) { 
     editing = true; // to prevent zoom window from closing by clicking in it
     document.getElementById(`added-task-${i}`).innerHTML = editTaskHTML(i);
     setCategory(i);
     setUrgency(i);
 }
 
-function editTaskHTML(i) { // i = index of element in addedTasks
+/**
+ * This function returns the HTML that enables editing
+ * 
+ * @param {number} i - This number is unique for every task, it is equal to the index of the task in addedTasks
+ */
+
+function editTaskHTML(i) { 
     let task = addedTasks[i];
     return /*html*/ `
             <div class="top-zoom">
@@ -246,16 +289,38 @@ function editTaskHTML(i) { // i = index of element in addedTasks
             <p style="position: absolute; top: 24px; right: 48px; cursor: pointer" onclick="saveEdit(${i})">Save</p>`;
 }
 
+/**
+ * This function checks all option elements 
+ * with a class of .category-options
+ * for their values
+ * and sets the value that is equal to 
+ * the current task at the key 'category' as selected
+ * 
+ * 
+ * @param {number} i - This number is unique for every task, it is equal to the index of the task in addedTasks
+ */
+
 function setCategory(i) { 
     let task = addedTasks[i];
-    let options = document.querySelectorAll('.category-options'); // looping through category options to find option equal to task['category']
-    options.forEach(option => {if(option.value == task['category']){option.selected = true}}); // setting category as seleected
+    let options = document.querySelectorAll('.category-options'); 
+    options.forEach(option => {if(option.value == task['category']){option.selected = true}}); 
 }
+
+/**
+ * This function checks all option elements 
+ * with a class of .urgency-options
+ * for their values
+ * and sets the value that is equal to 
+ * the current task at the key 'urgency' as selected
+ * 
+ * 
+ * @param {number} i - This number is unique for every task, it is equal to the index of the task in addedTasks
+ */
 
 function setUrgency(i) { 
     let task = addedTasks[i];
-    let urgencyOptions = document.querySelectorAll('.urgency-options'); // looping through category options to find option equal to task['category']
-    urgencyOptions.forEach(urgencyOption => {if(urgencyOption.value == task['urgency']){urgencyOption.selected = true}}); // setting category as seleected
+    let urgencyOptions = document.querySelectorAll('.urgency-options'); 
+    urgencyOptions.forEach(urgencyOption => {if(urgencyOption.value == task['urgency']){urgencyOption.selected = true}});
 }
 
 function cancelEdit(i) {
@@ -267,6 +332,13 @@ function saveEdit(i) {
     catchInputs(i);
 }
 
+/**
+ * This function reads the values of all inputs
+ * of the edit task view
+ * 
+ * @param {number} i - This number is unique for every task, it is equal to the index of the task in addedTasks
+ */
+
 function catchInputs(i) {
     let neuTitle = document.getElementById('add-title').value;
     let neuCategory = document.getElementById('add-category').value;
@@ -277,6 +349,19 @@ function catchInputs(i) {
     saveChangesToTask(neuTitle, neuCategory, neuDescription, neuDate, urgency, toMember, i);
 }
 
+/**
+ * This function saves the changes that were made in the edit view
+ * by changing the value of the corresponding key of a task
+ * and updates the cards HTML accordingly
+ * 
+ * @param {string} neuTitle - This is the title of the task
+ * @param {string} neuCategory - This is the category of the task
+ * @param {string} neuDescription - This is the description of the task
+ * @param {Date} neuDate - This is the due date of teh task
+ * @param {string} urgency - This is the urgency of the task
+ * @param {string} toMember - This is the member the task is assigned to
+ * @param {number} i - This number is unique for every task, it is equal to the index of the task in addedTasks
+ */
 
 function saveChangesToTask(neuTitle, neuCategory, neuDescription, neuDate, urgency, toMember, i) {
     let task = addedTasks[i];
@@ -292,7 +377,7 @@ function saveChangesToTask(neuTitle, neuCategory, neuDescription, neuDate, urgen
     closeZoomTask();
 }
 
-/*drag function*/
+/*dragndrop functionality*/
 
 function startDragging(id) {
     currentElement = id;
