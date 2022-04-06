@@ -18,7 +18,7 @@
     <link rel="icon" href="./joinlogo.ico">  <!--favicon-->
 </head>
 
-<body onload="includeHTML(), initboard()">
+<body onload="includeHTML(), initboard(), initNav()">
     <div w3-include-html="navigation.html"></div>
     <div class="content" style="padding-left: calc(100vw - 100%);">
         <div id="to-do-container" class="task-container" ondrop="moveTo('to-do')" ondragover="allowDrop(event)">
