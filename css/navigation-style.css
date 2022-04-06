@@ -11,6 +11,7 @@
     left: 0;
     top: 0;
     border-right: 1px #EBECF0 solid;
+    z-index: 1;
 }
 
 #navigation_bar_logo {
@@ -65,12 +66,15 @@ h4 {
         transform: translateX(-180px);
     }
     #close-btn {
+        height: 140px;
+        width: 40px;
+        object-fit: contain;
         color: white;
-        font-size: 26px;
-        background-color: rgb(397, 10, 26, 0.5);
-        border-radius: 50%;
+        background-color: #0A0A1A;
+        border: 2px solid white;
+        border-radius: 0 20px 20px 0;
         position: fixed;
-        left: 173px;
-        top: 50vh;
+        left: 180px;
+        top: calc(50vh - 70px);
     }
 }
