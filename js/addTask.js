@@ -81,9 +81,11 @@ function showAllUsers() {
     if (!allUser.length == 0) {
         for (let i = 0; i < allUser.length; i++) {
             if (allUser[0]['gruppe'] == currentGroup) {
+                let userName = allUser[i]['name']
                 memberOptions.innerHTML += `
-                <option value="${allUser[i]['name']}">${allUser[i]['name']}</option>
+                <option id = "option${i}" value="${userName}">${allUser[i]['name']}</option>
                 `;
+                selectCurrentUser(`option${i}`, userName);
             }
         }
     } else {
@@ -92,6 +94,15 @@ function showAllUsers() {
         `;
     }
 
+}
+
+/* Make CurrentUser Default Option by asign to User */
+function selectCurrentUser(input, userName) {
+    let currentUser = loadJSON("currentUser");
+    let currentUserName = currentUser['username']
+    if (userName == currentUserName) {
+        document.getElementById(input).selected = true;
+    }
 }
 
 function addNeuUser() {
