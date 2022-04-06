@@ -3,11 +3,6 @@ let openMenuButton = '/img/navigation/open.svg';
 let closeMenuButton = '/img/navigation/close.svg';
 
 
-function initNav() {
-    addSource();
-}
-
-
 function addSource() {
     if (closeMenu) {
         document.getElementById('close-btn').src = openMenuButton;
