@@ -10,7 +10,7 @@ function initBacklog() {
 
 
 function loadTasksArchive() {
-    let archiveAsString = localStorage.getItem('TasksArchive');
+    let archiveAsString = localStorage.getItem('TASKS');
 
     if(archiveAsString) {
         tasksArchive = JSON.parse(archiveAsString);
@@ -60,7 +60,7 @@ function addTaskToTasksBacklog(neuTitle, neuCategory, neuDescription, neuDate, u
     loadTasksArchive();
     tasksArchive.push(task);
     saveJson('TasksBacklog', tasks);
-    saveJson('TasksArchive', tasksArchive);
+    saveJson('TASKS', tasksArchive); //TasksArchive
 }
 
 
@@ -72,7 +72,7 @@ function renderTasksBacklog() {
         let currentTask = tasksBacklog[i];
 
         document.getElementById('backlog_content').innerHTML += cardTemplate(currentTask, i);
-        document.getElementById('backlog_button_container').innerHTML += /*html*/`<button onclick="saveJson('TASKS', tasksArchive), deleteTaskBacklog(${i}), hideButtonContainerBacklog()" class="add_to_board_btn" id="add_to_board_button${i}">Add task to board</button>`  //!!!!!Hat einen Bug
+        document.getElementById('backlog_button_container').innerHTML += /*html*/`<button onclick="deleteTaskBacklog(${i}), hideButtonContainerBacklog()" class="add_to_board_btn" id="add_to_board_button${i}">Add task to board</button>`
         addCategories(i);
     }
 }
@@ -121,16 +121,6 @@ function hideButtonContainerBacklog() {
    } else {
        return;
    }
-}
-
-
-function saveTasksBacklog() {
-    let tasksArrayAsString = localStorage.getItem('TASKS');
-    let tasksArray;
-    if (tasksArrayAsString) {
-       tasksArray = JSON.parse(tasksArrayAsString);
-    }
-    saveJson('TASKS', tasks);
 }
 
 
