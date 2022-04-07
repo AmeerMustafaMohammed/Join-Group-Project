@@ -5,11 +5,7 @@ currentGroup = "DEMO";
 let tasks = [];
 let allUser = [];
 let allCategories = [];
-<<<<<<< HEAD
 let logInUser;
-=======
-let usersExample = [];
->>>>>>> c3771496f1829cf0f619649caf8a619155b1ac42
 
 
 
@@ -30,12 +26,6 @@ async function init() {
     showAllUsers(); // Show updated User on Screen
     loadCategories();
     showallCategories();
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> c3771496f1829cf0f619649caf8a619155b1ac42
 }
 
 /* Change Demo if loggied in */
