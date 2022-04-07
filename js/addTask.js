@@ -3,30 +3,39 @@ currentGroup = "DEMO";
 let tasks = [];
 let allUser = [];
 let allCategories = [];
+let logInUser;
 
 
 
 
 function init() {
     if (loadJSON('TasksBacklog')) {
-        tasks = loadJSON('TasksBacklog'); //##############TOBIAS: ich habe die ganzen Funktionen so umgeändert, dass die Tasks ins Backlog und nicht auf das Board gepusht werden, von wo aus man sie weiter zum Board pushen kann##############
+        tasks = loadJSON('TasksBacklog');
     }
     if (loadJSON('allUser')) {
         allUser = loadJSON('allUser');
     }
-    loadGroupName(); //name of registered group is loaded from login.js
 
+
+    loadGroupName(); //name of registered group is loaded from login.js
+    changeDemo();
     loadAllUser(); // Load all user from LocalStorage
+    addUserFromLogin();
     showAllUsers(); // Show updated User on Screen
     loadCategories();
     showallCategories();
 
+
+
 }
 
-/* SHOWING CurrentUser ON  Member -Selector */
+/* Change Demo if loggied in */
 
-function showCurrentUser() {
-
+function changeDemo() {
+    logInUser = loadJSON("currentUser");
+    if (logInUser) {
+        currentGroup = logInUser.group;
+    }
 }
 /* ADDING TASKS *********************** */
 function catchInputs(i) {
@@ -80,8 +89,10 @@ function showAllUsers() {
     memberOptions.innerHTML = '';
     if (!allUser.length == 0) {
         for (let i = 0; i < allUser.length; i++) {
-            if (allUser[0]['gruppe'] == currentGroup) {
+            if (allUser[i]['gruppe'] == currentGroup) {
                 let userName = allUser[i]['name']
+                    //
+                console.log("Show User ausgefürht")
                 memberOptions.innerHTML += `
                 <option id = "option${i}" value="${userName}">${allUser[i]['name']}</option>
                 `;
@@ -118,6 +129,37 @@ function addNeuUser() {
     allUser.push(user)
     saveJson('allUser', allUser);
     showAllUsers();
+}
+
+
+/* ADD USER TO allUser from Login page */
+
+function addUserFromLogin() {
+    let userSaved = false;
+    if (logInUser && !isUserSaved()) {
+        let user = {
+            name: logInUser.username,
+            gruppe: logInUser.group
+        }
+
+        allUser.push(user)
+        console.log(user)
+        saveJson('allUser', allUser);
+    }
+
+}
+
+/* Cheking if new user is already saved */
+function isUserSaved() {
+    let userSaved = false;
+    if (logInUser) {
+        for (let i = 0; i < allUser.length; i++) {
+            if (allUser[i].name == logInUser.username && allUser[i].gruppe == logInUser.group) {
+                userSaved = true;
+            }
+        }
+    }
+    return userSaved;
 }
 
 /* CATEGORYIES */
