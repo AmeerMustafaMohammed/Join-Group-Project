@@ -1,3 +1,5 @@
+setURL = ('http://developerakademie.com/smallest_backend_ever');
+
 let groups = []; //all founded groups
 let users = []; //all user names
 let requestedGroup; //group, which was requested

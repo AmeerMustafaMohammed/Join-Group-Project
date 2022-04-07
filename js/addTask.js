@@ -1,8 +1,11 @@
+setURL = ('http://developerakademie.com/smallest_backend_ever');
+
 let currentGroup;
 currentGroup = "DEMO";
 let tasks = [];
 let allUser = [];
 let allCategories = [];
+let usersExample = [];
 
 
 
@@ -20,7 +23,6 @@ function init() {
     showAllUsers(); // Show updated User on Screen
     loadCategories();
     showallCategories();
-
 }
 
 /* SHOWING CurrentUser ON  Member -Selector */
