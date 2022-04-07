@@ -1,4 +1,4 @@
-setURL = ('http://developerakademie.com/smallest_backend_ever');
+setURL = ('http://gruppe-208.developerakademie.com/smallest_backend_ever');
 
 let currentGroup;
 currentGroup = "DEMO";
@@ -10,9 +10,9 @@ let usersExample = [];
 
 
 
-function init() {
+async function init() {
     if (loadJSON('TasksBacklog')) {
-        tasks = loadJSON('TasksBacklog'); //##############TOBIAS: ich habe die ganzen Funktionen so umgeändert, dass die Tasks ins Backlog und nicht auf das Board gepusht werden, von wo aus man sie weiter zum Board pushen kann##############
+        tasks = loadJSON('TasksBacklog');
     }
     if (loadJSON('allUser')) {
         allUser = loadJSON('allUser');
