@@ -99,10 +99,13 @@ function showAllUsers() {
 /* Make CurrentUser Default Option by asign to User */
 function selectCurrentUser(input, userName) {
     let currentUser = loadJSON("currentUser");
-    let currentUserName = currentUser['username']
-    if (userName == currentUserName) {
-        document.getElementById(input).selected = true;
+    if (currentUser) {
+        let currentUserName = currentUser['username']
+        if (userName == currentUserName) {
+            document.getElementById(input).selected = true;
+        }
     }
+
 }
 
 function addNeuUser() {
