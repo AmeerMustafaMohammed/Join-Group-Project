@@ -1,14 +1,20 @@
+setURL = ('http://gruppe-208.developerakademie.com/smallest_backend_ever');
+
 let currentGroup;
 currentGroup = "DEMO";
 let tasks = [];
 let allUser = [];
 let allCategories = [];
+<<<<<<< HEAD
 let logInUser;
+=======
+let usersExample = [];
+>>>>>>> c3771496f1829cf0f619649caf8a619155b1ac42
 
 
 
 
-function init() {
+async function init() {
     if (loadJSON('TasksBacklog')) {
         tasks = loadJSON('TasksBacklog');
     }
@@ -24,9 +30,12 @@ function init() {
     showAllUsers(); // Show updated User on Screen
     loadCategories();
     showallCategories();
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> c3771496f1829cf0f619649caf8a619155b1ac42
 }
 
 /* Change Demo if loggied in */
