@@ -28,16 +28,16 @@ function deletedtaskHTML(task) {
             <div style="width: 10%; min-width: 120px">
                 <p>${capitalize(task['deleted-from'])}</p>
             </div>
-            <div style="width: 10%; min-width: 120px">
+            <div class="category" style="width: 10%; min-width: 120px">
                 <p>${task['category']}</p>
             </div>
-            <div style="width: 10%; min-width: 120px">
+            <div class="title" style="width: 10%; min-width: 120px">
                 <p>${task['title']}</p>
             </div>
-            <div style="width: 20%; min-width: 150px">
+            <div class="description" style="width: 20%; min-width: 150px">
                 <p>${task['description']}</p>
             </div>
-            <div style="width: 10%; min-width: 120px">
+            <div class="assigned-to" style="width: 10%; min-width: 120px">
                 <p>${task['assigned-to']}</p>
             </div>
         </div>

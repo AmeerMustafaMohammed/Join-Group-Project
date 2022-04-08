@@ -20,7 +20,22 @@ function updateHTML() {
     updateInProgress();
     updateInReview();
     updateApproved();
+    checkforEmpty();
     saveChanges();
+}
+
+function checkforEmpty() {
+    let toDo = document.getElementById('to-do');
+    if(toDo.innerHTML == '') {
+        addPlus();
+    }
+}
+
+function addPlus() {
+    document.getElementById('to-do').innerHTML = /*html*/ `
+        <div class="default-content">
+        <a href="#" onclick="window.location.href = 'addTasks.html'" title="add a task"><img src="/img/board-img/plus.png"></a>
+        </div>`;
 }
 
 /**
@@ -175,7 +190,7 @@ function taskZoomHTML(task, i) {
                 <button id="cancel-btn-${i}" class="btn">Cancel</button>
             </div>
             </div>
-            <p style="position: absolute; top: 24px; right: 48px; cursor: pointer" onclick="event.stopPropagation(), editTask(${i})">Edit</p>
+            <p style="position: absolute; top: 24px; right: 70px; cursor: pointer" onclick="event.stopPropagation(), editTask(${i})">Edit</p>
         </div>`;
 }
 
@@ -246,6 +261,7 @@ function editTask(i) {
     document.getElementById(`added-task-${i}`).innerHTML = editTaskHTML(i);
     setCategory(i);
     setUrgency(i);
+    // setUser(i);
 }
 
 /**
@@ -282,7 +298,6 @@ function editTaskHTML(i) {
                 <span><input type="date" id="add-date" value="2022-03-25"></span>
                 <span>                    
                     <select id="asign-member"  class="select-dropdown">
-                        <option value="max musterman">Max Musterman</option>
                     </select></span>
             </div>
             <p style="position: absolute; top: 24px; right: 96px; cursor: pointer" onclick="cancelEdit(${i})">Cancel</p>
@@ -322,6 +337,18 @@ function setUrgency(i) {
     let urgencyOptions = document.querySelectorAll('.urgency-options'); 
     urgencyOptions.forEach(urgencyOption => {if(urgencyOption.value == task['urgency']){urgencyOption.selected = true}});
 }
+
+// function setUser(i) {
+//     let allUsers = loadJSON('allUser');
+//     let selectUser = document.getElementById('asign-member');
+//     let task = addedTasks[i];
+//     allUsers.forEach(user => {
+//         selectUser.innerHTML += /*html*/ `
+//             <option class="user-options" value="${user['name']}">${user['name']}</option>`;
+//     });
+//     let userOptions = document.querySelectorAll('.user-options');
+//     userOptions.forEach(userOption => {if(userOption.value == task['assigned-to']){userOption.selected = true}});
+// }
 
 function cancelEdit(i) {
     editing = false;

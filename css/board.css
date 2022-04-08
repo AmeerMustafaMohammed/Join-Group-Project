@@ -1,7 +1,7 @@
 body {
     margin: 0;
     box-sizing: border-box;
-    background-color:#25323c;
+    background-color:#11111B;
     background-size: cover;
     overflow-x: hidden;
 } 
@@ -141,6 +141,24 @@ span {
 }
 
 .task:hover {
+    opacity: 0.9;
+}
+
+.default-content {
+    height: 250px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.default-content img {
+    height: 50px;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.default-content img:hover {
     opacity: 0.9;
 }
 
