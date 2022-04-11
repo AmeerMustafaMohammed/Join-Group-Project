@@ -1,7 +1,11 @@
 body {
     margin: 0;
     box-sizing: border-box;
+<<<<<<< HEAD
+    background-color:#11111B;
+=======
     background-color: #11111b;;
+>>>>>>> 020dd9085c0c743665f9490a554e9a22f3985740
     background-size: cover;
     overflow-x: hidden;
 } 
@@ -141,6 +145,24 @@ span {
 }
 
 .task:hover {
+    opacity: 0.9;
+}
+
+.default-content {
+    height: 250px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.default-content img {
+    height: 50px;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.default-content img:hover {
     opacity: 0.9;
 }
 
