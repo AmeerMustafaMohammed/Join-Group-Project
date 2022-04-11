@@ -1,4 +1,4 @@
-setURL = ('http://gruppe-208.developerakademie.com/smallest_backend_ever');
+setURL('http://gruppe-208.developerakademie.net/smallest_backend_ever');
 
 let addedTasks = [];
 
@@ -8,7 +8,8 @@ function capitalize(str) {
     return str[0].toUpperCase() + str.slice(1);
 }
 
-function initTrash() {
+async function initTrash() {
+    await downloadFromServer();
     addedTasks = JSON.parse(localStorage.getItem('TASKS'));
     updateTrashHTML();
 }

@@ -1,4 +1,4 @@
-setURL = ('http://gruppe-208.developerakademie.com/smallest_backend_ever');
+setURL('http://gruppe-208.developerakademie.net/smallest_backend_ever');
 
 let addedTasks = [];
 
@@ -7,7 +7,8 @@ let currentElement;
 let editing = false;
 
 
-function initboard() {
+async function initboard() {
+    await downloadFromServer();
     addedTasks = JSON.parse(localStorage.getItem('TASKS'));
     updateHTML();
 }
@@ -80,7 +81,7 @@ function updateApproved() {
  */
 
 function taskHTML(task) {
-    let i = addedTasks.indexOf(task); 
+    let i = addedTasks.indexOf(task);
     return /*html*/ `
     <div onclick="showAddedTask(${i})" class="added-task" draggable="true" ondragstart="startDragging(${task['id']})">
             <div class="top-added">
@@ -100,7 +101,7 @@ function taskHTML(task) {
  */
 
 function backgroundColors(task) {
-    let i = addedTasks.indexOf(task); 
+    let i = addedTasks.indexOf(task);
     let h = document.getElementById(`h-${i}`);
 
     if (task['urgency'] == 'High') {
@@ -184,12 +185,12 @@ function taskZoomHTML(task, i) {
 function closeZoomTask() {
     //the if statement prevents the zoomed Task from closing
     //when clicking in the edit view
-    if(editing == false) { 
-    document.getElementById('zoom-task').classList.add('scale-0');
-    document.getElementById('zoom-task').classList.add('opacity-0');
-    document.getElementById('zoom-task').classList.remove('opacity-1');
-    document.getElementById('zoom-task').classList.remove('z-index-2000');
-    document.getElementById('zoom-task').classList.remove('scale-1');
+    if (editing == false) {
+        document.getElementById('zoom-task').classList.add('scale-0');
+        document.getElementById('zoom-task').classList.add('opacity-0');
+        document.getElementById('zoom-task').classList.remove('opacity-1');
+        document.getElementById('zoom-task').classList.remove('z-index-2000');
+        document.getElementById('zoom-task').classList.remove('scale-1');
     }
 }
 
@@ -243,7 +244,7 @@ function deleteFromBoard(i) {
  * @param {number} i - This number is unique for every task, it is equal to the index of the task in addedTasks
  */
 
-function editTask(i) { 
+function editTask(i) {
     editing = true; // to prevent zoom window from closing by clicking in it
     document.getElementById(`added-task-${i}`).innerHTML = editTaskHTML(i);
     setCategory(i);
@@ -256,7 +257,7 @@ function editTask(i) {
  * @param {number} i - This number is unique for every task, it is equal to the index of the task in addedTasks
  */
 
-function editTaskHTML(i) { 
+function editTaskHTML(i) {
     let task = addedTasks[i];
     return /*html*/ `
             <div class="top-zoom">
@@ -302,10 +303,10 @@ function editTaskHTML(i) {
  * @param {number} i - This number is unique for every task, it is equal to the index of the task in addedTasks
  */
 
-function setCategory(i) { 
+function setCategory(i) {
     let task = addedTasks[i];
-    let options = document.querySelectorAll('.category-options'); 
-    options.forEach(option => {if(option.value == task['category']){option.selected = true}}); 
+    let options = document.querySelectorAll('.category-options');
+    options.forEach(option => { if (option.value == task['category']) { option.selected = true } });
 }
 
 /**
@@ -319,10 +320,10 @@ function setCategory(i) {
  * @param {number} i - This number is unique for every task, it is equal to the index of the task in addedTasks
  */
 
-function setUrgency(i) { 
+function setUrgency(i) {
     let task = addedTasks[i];
-    let urgencyOptions = document.querySelectorAll('.urgency-options'); 
-    urgencyOptions.forEach(urgencyOption => {if(urgencyOption.value == task['urgency']){urgencyOption.selected = true}});
+    let urgencyOptions = document.querySelectorAll('.urgency-options');
+    urgencyOptions.forEach(urgencyOption => { if (urgencyOption.value == task['urgency']) { urgencyOption.selected = true } });
 }
 
 function cancelEdit(i) {
@@ -397,14 +398,14 @@ function moveTo(category) {
 
 /*access storage*/
 
-function loadJSON(key) {
-    let JSONAsString = localStorage.getItem(key)
-    if (JSONAsString) {
-        JSON = JSON.parse(JSONAsString);
-        return JSON;
-    }
+async function loadJSON(key) {
+    await downloadFromServer();
+    let JSONAsString = await backend.getItem(key)
+
+    JSON = JSON.parse(JSONAsString) || [];
+    return JSON;
 }
 
-function saveChanges() {
-    localStorage.setItem('TASKS', JSON.stringify(addedTasks));
+async function saveChanges() {
+    await backend.setItem('TASKS', JSON.stringify(addedTasks));
 }

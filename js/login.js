@@ -1,4 +1,4 @@
-setURL = ('http://gruppe-208.developerakademie.com/smallest_backend_ever');
+setURL('http://gruppe-208.developerakademie.net/smallest_backend_ever');
 
 let groups = []; //all founded groups
 let users = []; //all user names
@@ -7,7 +7,8 @@ let user; //username
 let currentUser = []; //combination of group and user
 
 
-function initLogin() {
+async function initLogin() {
+    await downloadFromServer();
     loadItems();
 }
 

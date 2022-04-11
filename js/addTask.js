@@ -1,4 +1,4 @@
-setURL = ('http://gruppe-208.developerakademie.com/smallest_backend_ever');
+setURL('http://gruppe-208.developerakademie.net/smallest_backend_ever');
 
 let currentGroup;
 currentGroup = "DEMO";
@@ -160,20 +160,19 @@ function editCategory() {
 }
 /* JSON */
 
-function saveJson(key, Json) {
+async function saveJson(key, Json) {
     let jsonAsString = JSON.stringify(Json);
-    localStorage.setItem(key, jsonAsString)
+    await backend.setItem(key, jsonAsString);
 }
 
 
 
-function loadJSON(key) {
-    let JSONAsString = localStorage.getItem(key)
-    if (JSONAsString) {
-        result = JSON.parse(JSONAsString);
-        return result;
-    }
+async function loadJSON(key) {
+    await downloadFromServer();
+    let JSONAsString = await backend.getItem(key);
 
+        result = JSON.parse(JSONAsString) || [];
+        return result;
 }
 
 function loadcurrentGrop() {

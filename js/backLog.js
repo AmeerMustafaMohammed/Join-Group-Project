@@ -1,32 +1,34 @@
-setURL = ('http://gruppe-208.developerakademie.com/smallest_backend_ever');
+setURL('http://gruppe-208.developerakademie.net/smallest_backend_ever');
 
 let tasksBacklog = [];
 let isOpened = false;
 let tasksArchive = [];
+let tasksTest;
 
-function initBacklog() {
+async function initBacklog() {
     loadTasksBacklog();
     loadTasksArchive();
     renderTasksBacklog();
 }
 
 
-function loadTasksArchive() {
-    let archiveAsString = localStorage.getItem('TASKS');
+async function loadTasksArchive() {
+    await downloadFromServer();
+    let archiveAsString = await backend.getItem('TASKS');
+    console.log(archiveAsString);//test
 
-    if(archiveAsString) {
-        tasksArchive = JSON.parse(archiveAsString);
-    }
+    tasksArchive =  JSON.parse(archiveAsString) || [];
+    console.log(tasksArchive);//test
 }
 
 
-function loadTasksBacklog() {
-    let savedTasksBacklogString = localStorage.getItem('TasksBacklog');
+async function loadTasksBacklog() {
+    await downloadFromServer();
+    let savedTasksBacklogString = await backend.getItem('TasksBacklog');
 
-    if (savedTasksBacklogString) {
-        tasksBacklog = JSON.parse(savedTasksBacklogString);
-        tasks = JSON.parse(savedTasksBacklogString);
-    }
+        tasksBacklog = JSON.parse(savedTasksBacklogString) || [];
+        tasks = JSON.parse(savedTasksBacklogString) || [];
+        console.log(tasks);
 }
 
 
@@ -105,24 +107,24 @@ function deleteTaskBacklog(i) {
 
 
 function showButtonBacklog(i) {
-   if (!isOpened) {
-   document.getElementById('backlog_button_container').style = 'display: unset';
-   document.getElementById('add_to_board_button' + i).style = 'display: unset';
-   } else {
-    document.getElementById('backlog_button_container').style = 'display: none';
-    document.getElementById('add_to_board_button' + i).style = 'display: none';
-   }
+    if (!isOpened) {
+        document.getElementById('backlog_button_container').style = 'display: unset';
+        document.getElementById('add_to_board_button' + i).style = 'display: unset';
+    } else {
+        document.getElementById('backlog_button_container').style = 'display: none';
+        document.getElementById('add_to_board_button' + i).style = 'display: none';
+    }
 
-   isOpened = !isOpened;
+    isOpened = !isOpened;
 }
 
 
 function hideButtonContainerBacklog() {
-   if (window.screen.width < 800) {
-       document.getElementById('backlog_button_container').style = 'display: none';
-   } else {
-       return;
-   }
+    if (window.screen.width < 800) {
+        document.getElementById('backlog_button_container').style = 'display: none';
+    } else {
+        return;
+    }
 }
 
 
