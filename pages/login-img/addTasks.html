@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../../css/add-task-style.css">
     <link rel="icon" href="./joinlogo.ico">
@@ -30,6 +31,8 @@
         <h1>ADD TASK</h1>
         <p>Learning Manegment System Project</p>
     </div>
+
+
     <!-- ADDING FORM -->
     <section id="add-task-container">
 
@@ -58,6 +61,7 @@
                 <h2>DESCRIPTION</h2>
                 <textarea id="add-description" cols="30" rows="10" onfocus="this.value=''"></textarea>
             </div>
+
         </div>
 
         <!-- RIGHT SIDE OF CONTAINER -->
@@ -88,24 +92,26 @@
 
             <div class="form-buttons">
                 <button onclick="catchInputsBacklog()">CREATE TICKET</button>
-                <button>CANCEL</button>
+                <button onclick="location.reload();">CANCEL</button>
             </div>
         </div>
 
         <!-- Edit USER -->
         <section id="add-user-container" style="display: none;">
             <div class="add-neu-user">
-                <h5 onclick="hideDiv('add-user-container')" class="x">X</h5>
+
+                <i class="material-icons x" onclick="hideDiv('add-user-container')"> highlight_off</i>
                 <input type="text" placeholder="insert neu user" id="neu-user">
                 <button onclick="addNeuUser()">ADD USER</button>
             </div>
         </section>
 
 
+
         <!-- Edit Category -->
         <section id="add-Category-container" style="display: none;">
             <div class="add-neu-Category ">
-                <h5 onclick="hideDiv( 'add-Category-container') " class="x">X</h5>
+                <i class="material-icons x" onclick="hideDiv('add-Category-container')"> highlight_off</i>
                 <input type="text " placeholder="insert neu Category " id="neu-Category">
                 <button onclick="addNeuCategory() ">ADD Category</button>
             </div>

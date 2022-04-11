@@ -69,6 +69,7 @@ function addTaskToTasks(neuTitle, neuCategory, neuDescription, neuDate, urgency,
     }
     tasks.push(task)
     saveJson('TASKS', tasks)
+    location.replace("backLog.html");
 }
 
 
@@ -128,6 +129,8 @@ function addNeuUser() {
     allUser.push(user)
     saveJson('allUser', allUser);
     showAllUsers();
+    hideDiv('add-user-container');
+
 }
 
 
@@ -192,6 +195,7 @@ function addNeuCategory() {
     allCategories.push(Category)
     saveJson('allCategories', allCategories);
     showallCategories();
+    hideDiv('add-Category-container')
 }
 
 function editCategory() {
@@ -210,8 +214,8 @@ async function loadJSON(key) {
     await downloadFromServer();
     let JSONAsString = await backend.getItem(key);
 
-        result = JSON.parse(JSONAsString) || [];
-        return result;
+    result = JSON.parse(JSONAsString) || [];
+    return result;
 }
 
 function loadcurrentGrop() {
