@@ -6,19 +6,18 @@ let tasksArchive = [];
 let tasksTest;
 
 async function initBacklog() {
-    loadTasksBacklog();
-    loadTasksArchive();
+    await loadTasksBacklog();
+    await loadTasksArchive();
     renderTasksBacklog();
 }
 
 
 async function loadTasksArchive() {
-    await downloadFromServer();
     let archiveAsString = await backend.getItem('TASKS');
     console.log(archiveAsString);//test
 
     tasksArchive =  JSON.parse(archiveAsString) || [];
-    console.log(tasksArchive);//test
+    console.log('tasksArchive', tasksArchive);//test
 }
 
 
@@ -26,9 +25,9 @@ async function loadTasksBacklog() {
     await downloadFromServer();
     let savedTasksBacklogString = await backend.getItem('TasksBacklog');
 
-        tasksBacklog = JSON.parse(savedTasksBacklogString) || [];
-        tasks = JSON.parse(savedTasksBacklogString) || [];
-        console.log(tasks);
+        tasksBacklog = await JSON.parse(savedTasksBacklogString) || [];
+        tasks = await JSON.parse(savedTasksBacklogString) || [];
+        console.log('Tasks:', tasks);
 }
 
 
@@ -48,7 +47,7 @@ function catchInputsBacklog() {
 }
 
 
-function addTaskToTasksBacklog(neuTitle, neuCategory, neuDescription, neuDate, urgency, toMember) {
+async function addTaskToTasksBacklog(neuTitle, neuCategory, neuDescription, neuDate, urgency, toMember) {
     let task = {
         'id': idAutoincrement(),
         'title': neuTitle,
@@ -60,11 +59,12 @@ function addTaskToTasksBacklog(neuTitle, neuCategory, neuDescription, neuDate, u
         'class': 'to-do',
         'deleted-from': null
     };
+    await loadJSON('TASKS', 'tasks');  //check for right keys
     tasks.push(task);
-    loadTasksArchive();
+    await loadTasksArchive();
     tasksArchive.push(task);
-    saveJson('TasksBacklog', tasks);
-    saveJson('TASKS', tasksArchive); //TasksArchive
+    await saveJson('TasksBacklog', tasks);
+    await saveJson('TASKS', tasksArchive); //TasksArchive
 }
 
 
@@ -72,8 +72,8 @@ function renderTasksBacklog() {
     document.getElementById('backlog_content').innerHTML = '';
     document.getElementById('backlog_button_container').innerHTML = '';
 
-    for (let i = 0; i < tasksBacklog.length; i++) {
-        let currentTask = tasksBacklog[i];
+    for (let i = 0; i < tasks.length; i++) {
+        let currentTask = tasks[i];
 
         document.getElementById('backlog_content').innerHTML += cardTemplate(currentTask, i);
         document.getElementById('backlog_button_container').innerHTML += /*html*/`<button onclick="deleteTaskBacklog(${i}), hideButtonContainerBacklog()" class="add_to_board_btn" id="add_to_board_button${i}">Add task to board</button>`
@@ -99,9 +99,9 @@ function cardTemplate(currentTask, i) {
 }
 
 
-function deleteTaskBacklog(i) {
-    tasksBacklog.splice(i, 1);
-    saveJson('TasksBacklog', tasksBacklog);
+async function deleteTaskBacklog(i) {
+    tasks.splice(i, 1);
+    await saveJson('TasksBacklog', 'tasksBacklog');
     renderTasksBacklog();
 }
 

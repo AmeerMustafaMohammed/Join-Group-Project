@@ -9,7 +9,7 @@ let editing = false;
 
 async function initboard() {
     await downloadFromServer();
-    addedTasks = JSON.parse(localStorage.getItem('TASKS'));
+    addedTasks = await JSON.parse(await backend.getItem('TASKS'));
     updateHTML();
 }
 

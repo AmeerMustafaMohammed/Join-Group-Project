@@ -11,17 +11,17 @@ let logInUser;
 
 
 async function init() {
-    if (loadJSON('TasksBacklog')) {
-        tasks = loadJSON('TasksBacklog');
-    }
-    if (loadJSON('allUser')) {
-        allUser = loadJSON('allUser');
-    }
+//    if (loadJSON('TasksBacklog')) {
+      await loadJSON('TasksBacklog', 'tasks');
+//    }
+//    if (loadJSON('allUser')) {
+      await loadJSON('allUser', 'allUser');
+//    }
 
 
     loadGroupName(); //name of registered group is loaded from login.js
     changeDemo();
-    loadAllUser(); // Load all user from LocalStorage
+//    loadAllUser(); // Load all user from LocalStorage
     addUserFromLogin();
     showAllUsers(); // Show updated User on Screen
     loadCategories();
@@ -30,8 +30,8 @@ async function init() {
 
 /* Change Demo if loggied in */
 
-function changeDemo() {
-    logInUser = loadJSON("currentUser");
+async function changeDemo() {
+    await loadJSON('currentUser', 'logInUser');
     if (logInUser) {
         currentGroup = logInUser.group;
     }
@@ -77,12 +77,12 @@ function addTaskToTasks(neuTitle, neuCategory, neuDescription, neuDate, urgency,
 /* CUSTOMIZING USER AND CATEGORIES */
 
 /*  USERS */
-function loadAllUser() {
+/*function loadAllUser() {
     if (loadJSON('allUser')) {
         allUser = loadJSON('allUser')
     }
 
-}
+}*/
 
 function showAllUsers() {
     let memberOptions = document.getElementById('asign-member');
@@ -165,10 +165,8 @@ function isUserSaved() {
 }
 
 /* CATEGORYIES */
-function loadCategories() {
-    if (loadJSON('allCategories')) {
-        allCategories = loadJSON('allCategories')
-    }
+async function loadCategories() {
+        await loadJSON('allCategories', 'allCategories');
 }
 
 function showallCategories() {
@@ -210,13 +208,25 @@ async function saveJson(key, Json) {
 
 
 
-async function loadJSON(key) {
-    await downloadFromServer();
+async function loadJSON(key, variable) {
     let JSONAsString = await backend.getItem(key);
 
-    result = JSON.parse(JSONAsString) || [];
-    return result;
+    variable =  await JSON.parse(JSONAsString) || [];
+
+    console.log(key, variable);
 }
+
+
+function loadJsonFromLocalStorage(key, variable) {
+    let JSONAsString = localStorage.getItem(key);
+
+    if(JSONAsString) {
+    variable =  JSON.parse(JSONAsString);
+
+    console.log(key, variable);
+    }
+}
+
 
 function loadcurrentGrop() {
     currentGroup = localStorage.getItem('currentGroup');
