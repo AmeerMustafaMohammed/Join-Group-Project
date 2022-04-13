@@ -22,7 +22,7 @@ async function init() {
 
     loadGroupName(); //name of registered group is loaded from login.js
     changeDemo();
-//    loadAllUser(); // Load all user from LocalStorage
+    loadAllUser(); // Load all user from LocalStorage
     addUserFromLogin();
     showAllUsers(); // Show updated User on Screen
     loadCategories();
@@ -78,9 +78,9 @@ async function addTaskToTasks(neuTitle, neuCategory, neuDescription, neuDate, ur
 /* CUSTOMIZING USER AND CATEGORIES */
 
 /*  USERS */
-/*async function loadAllUser() {
-    await loadJSON('allUser', 'allUser');
-}*/
+async function loadAllUser() {
+    allUser = await loadJSON('allUser');
+}
 
 function showAllUsers() {
     let memberOptions = document.getElementById('asign-member');
@@ -123,7 +123,6 @@ function addNeuUser() {
         name: neuUser,
         gruppe: currentGroup
     }
-
     allUser.push(user)
     saveJson('allUser', allUser);
     showAllUsers();
