@@ -32,7 +32,7 @@ async function init() {
 /* Change Demo if loggied in */
 
 async function changeDemo() {
-    await loadJSON('currentUser', 'logInUser');
+    logInUser = await loadJSON('currentUser');
     if (logInUser) {
         currentGroup = logInUser.group;
     }
@@ -55,7 +55,7 @@ function catchInputs(i) {
 }
 
 
-function addTaskToTasks(neuTitle, neuCategory, neuDescription, neuDate, urgency, toMember) {
+async function addTaskToTasks(neuTitle, neuCategory, neuDescription, neuDate, urgency, toMember) {
 
     let task = {
         'id': idAutoincrement(),
@@ -107,7 +107,7 @@ function showAllUsers() {
 
 /* Make CurrentUser Default Option by asign to User */
 function selectCurrentUser(input, userName) {
-    let currentUser = loadJSON("currentUser");
+    let currentUser = loadJSON('currentUser');
     if (currentUser) {
         let currentUserName = currentUser['username']
         if (userName == currentUserName) {
@@ -164,7 +164,7 @@ function isUserSaved() {
 
 /* CATEGORYIES */
 async function loadCategories() {
-        await loadJSON('allCategories', 'allCategories');
+    allCategories = await loadJSON('allCategories');
 }
 
 function showallCategories() {
@@ -207,16 +207,15 @@ async function saveJson(key, Json) {
 
 /**
  * 
- * This function gets the key of the array and the variable the array gets loaded to (line 216)
+ * This function gets the parameters of the key of the array and the variable the array gets loaded to (line 216)
  * @param {string} key 
  * @param {string} variable 
  */
-async function loadJSON(key, variable) {
+async function loadJSON(key) {
     let JSONAsString = await backend.getItem(key);
 
-    variable =  await JSON.parse(JSONAsString) || [];
-
-    console.log(key, variable);
+    let result =  await JSON.parse(JSONAsString) || [];
+    return result;
 }
 
 

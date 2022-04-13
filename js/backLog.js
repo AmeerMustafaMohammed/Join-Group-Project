@@ -60,7 +60,7 @@ async function addTaskToTasksBacklog(neuTitle, neuCategory, neuDescription, neuD
         'deleted-from': null
     };
     await downloadFromServer();
-    //await loadJSON('tasksBacklog', 'tasksBacklog');  //check for right keys
+    tasksBacklog = await loadJSON('TasksBacklog'); //check for right keys
     tasksBacklog.push(task);
 /*    await loadTasksArchive();
     tasksArchive.push(task);*/
@@ -83,7 +83,8 @@ function renderTasksBacklog() {
 }
 
 
-function pushToTasks(i) {
+async function pushToTasks(i) {
+    tasks = await loadJSON('tasks');
     tasks.push(tasksBacklog[i]);
     saveJson('tasks', tasks);
     deleteTaskBacklog(i);
