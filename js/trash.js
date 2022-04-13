@@ -8,9 +8,13 @@ function capitalize(str) {
     return str[0].toUpperCase() + str.slice(1);
 }
 
+/**
+ * 
+ * changed to backend saving
+ */
 async function initTrash() {
     await downloadFromServer();
-    addedTasks = JSON.parse(localStorage.getItem('TASKS'));
+    addedTasks = await JSON.parse(await backend.getItem('tasks'));
     updateTrashHTML();
 }
 
@@ -65,7 +69,11 @@ function deleteForEver(i) { // i = index of element in addedTasks
     updateTrashHTML();
 }
 
-function saveChanges() {
+/**
+ * 
+ * changed to backend saving
+ */
+async function saveChanges() {
     // let tasksAsString = JSON.stringify(addedTasks);
-    localStorage.setItem('TASKS', JSON.stringify(addedTasks));
+    await backend.setItem('tasks', JSON.stringify(addedTasks));
 }

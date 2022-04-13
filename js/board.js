@@ -9,7 +9,7 @@ let editing = false;
 
 async function initboard() {
     await downloadFromServer();
-    addedTasks = await JSON.parse(await backend.getItem('TASKS'));
+    addedTasks = await JSON.parse(await backend.getItem('tasks'));
     updateHTML();
 }
 
@@ -434,5 +434,5 @@ async function loadJSON(key) {
 }
 
 async function saveChanges() {
-    await backend.setItem('TASKS', JSON.stringify(addedTasks));
+    await backend.setItem('tasks', JSON.stringify(addedTasks));
 }

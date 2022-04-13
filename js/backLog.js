@@ -7,18 +7,18 @@ let tasksTest;
 
 async function initBacklog() {
     await loadTasksBacklog();
-    await loadTasksArchive();
+    //await loadTasksArchive();
     renderTasksBacklog();
 }
 
 
-async function loadTasksArchive() {
+/*async function loadTasksArchive() {
     let archiveAsString = await backend.getItem('TASKS');
     console.log(archiveAsString);//test
 
     tasksArchive =  JSON.parse(archiveAsString) || [];
     console.log('tasksArchive', tasksArchive);//test
-}
+}*/
 
 
 async function loadTasksBacklog() {
@@ -26,8 +26,8 @@ async function loadTasksBacklog() {
     let savedTasksBacklogString = await backend.getItem('TasksBacklog');
 
         tasksBacklog = await JSON.parse(savedTasksBacklogString) || [];
-        tasks = await JSON.parse(savedTasksBacklogString) || [];
-        console.log('Tasks:', tasks);
+        //tasks = await JSON.parse(savedTasksBacklogString) || [];
+        console.log('TasksBacklog:', tasksBacklog);
 }
 
 
@@ -59,12 +59,13 @@ async function addTaskToTasksBacklog(neuTitle, neuCategory, neuDescription, neuD
         'class': 'to-do',
         'deleted-from': null
     };
-    await loadJSON('TASKS', 'tasks');  //check for right keys
-    tasks.push(task);
-    await loadTasksArchive();
-    tasksArchive.push(task);
-    await saveJson('TasksBacklog', tasks);
-    await saveJson('TASKS', tasksArchive); //TasksArchive
+    await downloadFromServer();
+    //await loadJSON('tasksBacklog', 'tasksBacklog');  //check for right keys
+    tasksBacklog.push(task);
+/*    await loadTasksArchive();
+    tasksArchive.push(task);*/
+    await saveJson('TasksBacklog', tasksBacklog);
+//    await saveJson('TASKS', tasksArchive); //TasksArchive
 }
 
 
@@ -72,13 +73,20 @@ function renderTasksBacklog() {
     document.getElementById('backlog_content').innerHTML = '';
     document.getElementById('backlog_button_container').innerHTML = '';
 
-    for (let i = 0; i < tasks.length; i++) {
-        let currentTask = tasks[i];
+    for (let i = 0; i < tasksBacklog.length; i++) {
+        let currentTask = tasksBacklog[i];
 
         document.getElementById('backlog_content').innerHTML += cardTemplate(currentTask, i);
-        document.getElementById('backlog_button_container').innerHTML += /*html*/`<button onclick="deleteTaskBacklog(${i}), hideButtonContainerBacklog()" class="add_to_board_btn" id="add_to_board_button${i}">Add task to board</button>`
+        document.getElementById('backlog_button_container').innerHTML += /*html*/`<button onclick="/*deleteTaskBacklog(${i})*/pushToTasks(${i}), hideButtonContainerBacklog()" class="add_to_board_btn" id="add_to_board_button${i}">Add task to board</button>`
         addCategories(i);
     }
+}
+
+
+function pushToTasks(i) {
+    tasks.push(tasksBacklog[i]);
+    saveJson('tasks', tasks);
+    deleteTaskBacklog(i);
 }
 
 
@@ -100,8 +108,8 @@ function cardTemplate(currentTask, i) {
 
 
 async function deleteTaskBacklog(i) {
-    tasks.splice(i, 1);
-    await saveJson('TasksBacklog', 'tasksBacklog');
+    tasksBacklog.splice(i, 1);
+    await saveJson('TasksBacklog', tasksBacklog);
     renderTasksBacklog();
 }
 

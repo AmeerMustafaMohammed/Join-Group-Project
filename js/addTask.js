@@ -11,11 +11,12 @@ let logInUser;
 
 
 async function init() {
+    await downloadFromServer();
 //    if (loadJSON('TasksBacklog')) {
-      await loadJSON('TasksBacklog', 'tasks');
+      //await loadJSON('TasksBacklog', 'tasksBacklog');
 //    }
 //    if (loadJSON('allUser')) {
-      await loadJSON('allUser', 'allUser');
+      //await loadJSON('allUser', 'allUser');
 //    }
 
 
@@ -68,7 +69,7 @@ function addTaskToTasks(neuTitle, neuCategory, neuDescription, neuDate, urgency,
         'deleted-from': null
     }
     tasks.push(task)
-    saveJson('TASKS', tasks)
+    saveJson('tasks', tasks)
     location.replace("backLog.html");
 }
 
@@ -77,11 +78,8 @@ function addTaskToTasks(neuTitle, neuCategory, neuDescription, neuDate, urgency,
 /* CUSTOMIZING USER AND CATEGORIES */
 
 /*  USERS */
-/*function loadAllUser() {
-    if (loadJSON('allUser')) {
-        allUser = loadJSON('allUser')
-    }
-
+/*async function loadAllUser() {
+    await loadJSON('allUser', 'allUser');
 }*/
 
 function showAllUsers() {
@@ -207,7 +205,12 @@ async function saveJson(key, Json) {
 }
 
 
-
+/**
+ * 
+ * This function gets the key of the array and the variable the array gets loaded to (line 216)
+ * @param {string} key 
+ * @param {string} variable 
+ */
 async function loadJSON(key, variable) {
     let JSONAsString = await backend.getItem(key);
 
