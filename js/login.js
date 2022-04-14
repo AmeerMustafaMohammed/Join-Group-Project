@@ -113,9 +113,9 @@ function addGroup() {
 }
 
 
-async function saveItems() {
-    await saveJson('groups', groups);
-    await saveJson('users', users);
+function saveItems() {
+    localStorage.setItem('groups', JSON.stringify(groups));//needs backend saving
+    localStorage.setItem('users', JSON.stringify(users));//needs backend saving
 
     if (currentUser) {
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
@@ -126,8 +126,17 @@ async function saveItems() {
 async function loadItems() {
     let savedUser = localStorage.getItem('currentUser');
 
-        groups = await loadJSON('groups');
-        users = await loadJSON('users');
+    let groupsAsString =  localStorage.getItem('groups'); //groupsAsString
+    let usersAsString =  localStorage.getItem('users'); //usersAsString
+
+     
+    if (groupsAsString) {
+        groups =  JSON.parse(groupsAsString);
+    }
+
+    if(usersAsString) {
+        users =  JSON.parse(usersAsString);
+    }
 
     if (savedUser) {
         currentUser = JSON.parse(savedUser);
