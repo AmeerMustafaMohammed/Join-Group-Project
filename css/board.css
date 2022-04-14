@@ -1,14 +1,10 @@
 body {
     margin: 0;
     box-sizing: border-box;
-<<<<<<< HEAD
     background-color:#11111B;
-=======
-    background-color: #11111b;;
->>>>>>> 020dd9085c0c743665f9490a554e9a22f3985740
     background-size: cover;
     overflow-x: hidden;
-} 
+}
 
 input[type=text] {
     border: none;
