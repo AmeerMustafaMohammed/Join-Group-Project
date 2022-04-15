@@ -214,6 +214,17 @@ h1 {
     margin-bottom: 20px;
 }
 
+.create_demo {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #393180;
+    cursor: pointer; 
+}
+
+.create_demo:hover {
+    text-decoration: underline;
+}
+
 @media (max-width: 1400px) {
     .find_group {
         width: 800px;

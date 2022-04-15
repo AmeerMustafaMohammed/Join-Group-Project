@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="../../js/mini_backend.js"></script>
     <script src="../../js/login.js"></script>
+    <script src="../../js/addTask.js"></script>
 </head>
 
 <body onload="initLogin()">
@@ -25,15 +26,14 @@
         <div id="card_body">
             <h1>Welcome to JOIN</h1>
 
-            <!-- DEMO BUTTON Nur STYLEN -->
-            <button onclick=" window.location.href = 'addTasks.html'">Demo</button>
-            <!-- ++++++++++++++++++++++++++++++++++++ -->
             <button onclick="show('search_group_container'), show('group_search')" class="start_buttons yellow_button" id="find_group">Join a
                 group</button>
 
             <span><b>or</b></span>
 
             <button onclick="show('search_group_container'), show('found_group_container')" class="start_buttons purple_button" id="found_group">Found a group</button>
+
+            <span onclick=" window.location.href = 'addTasks.html'" class="create_demo">Create demo account</span>
         </div>
     </div>
 
@@ -67,12 +67,12 @@
 
                 <img onclick="hide('search_group_container'), hide('user_login')" class="close pointer" src="../../img/img-login/close.svg">
 
-                <h2>Enter your Username and Email adress</h2>
+                <h2>Enter your username</h2>
 
                 <input class="find_group_name" id="username_input" onfocus="this.value=''" type="text" placeholder="Enter your username..." required>
 
                 <span class="not_found d-none" id="user_not_found">
-                    User doesn't exist. Please create an Account!
+                    User doesn't exist. Please create an account!
                 </span>
 
                 <span>Don't have an account?</span>

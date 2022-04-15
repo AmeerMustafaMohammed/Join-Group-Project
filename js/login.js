@@ -114,8 +114,8 @@ function addGroup() {
 
 
 function saveItems() {
-    localStorage.setItem('groups', JSON.stringify(groups));
-    localStorage.setItem('users', JSON.stringify(users));
+    localStorage.setItem('groups', JSON.stringify(groups));//needs backend saving
+    localStorage.setItem('users', JSON.stringify(users));//needs backend saving
 
     if (currentUser) {
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
@@ -123,14 +123,19 @@ function saveItems() {
 }
 
 
-function loadItems() {
-    let groupsAsString = localStorage.getItem('groups');
-    let usersAsString = localStorage.getItem('users');
+async function loadItems() {
     let savedUser = localStorage.getItem('currentUser');
 
-    if (groupsAsString && usersAsString) {
-        groups = JSON.parse(groupsAsString);
-        users = JSON.parse(usersAsString);
+    let groupsAsString =  localStorage.getItem('groups'); //groupsAsString
+    let usersAsString =  localStorage.getItem('users'); //usersAsString
+
+     
+    if (groupsAsString) {
+        groups =  JSON.parse(groupsAsString);
+    }
+
+    if(usersAsString) {
+        users =  JSON.parse(usersAsString);
     }
 
     if (savedUser) {

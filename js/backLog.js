@@ -62,10 +62,7 @@ async function addTaskToTasksBacklog(neuTitle, neuCategory, neuDescription, neuD
     await downloadFromServer();
     tasksBacklog = await loadJSON('TasksBacklog'); //check for right keys
     tasksBacklog.push(task);
-/*    await loadTasksArchive();
-    tasksArchive.push(task);*/
     await saveJson('TasksBacklog', tasksBacklog);
-//    await saveJson('TASKS', tasksArchive); //TasksArchive
 }
 
 
