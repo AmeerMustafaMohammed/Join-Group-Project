@@ -114,7 +114,6 @@ function selectCurrentUser(input, userName) {
             document.getElementById(input).selected = true;
         }
     }
-
 }
 
 function addNeuUser() {
