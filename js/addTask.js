@@ -126,7 +126,6 @@ function addNeuUser() {
     saveJson('allUser', allUser);
     showAllUsers();
     hideDiv('add-user-container');
-
 }
 
 

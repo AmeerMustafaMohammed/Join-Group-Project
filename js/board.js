@@ -98,7 +98,7 @@ function updateApproved() {
 function taskHTML(task) {
     let i = addedTasks.indexOf(task);
     return /*html*/ `
-    <div onclick="showAddedTask(${i})" class="added-task" draggable="true" ondragstart="startDragging(${task['id']})">
+    <div onclick="showAddedTask(${i})" class="added-task" draggable="true" ondragstart="startDragging(${i})">
             <div class="top-added">
                 <span id="h-${i}" class="h-added">${task['title']}</span>
                 <span class="date-added">${task['due-date']}</span>
@@ -418,7 +418,7 @@ function allowDrop(event) {
 }
 
 function moveTo(category) {
-    currentElement--; // reduce currentElement by 1 increment to match addedTasks index
+    //currentElement--; // reduce currentElement by 1 increment to match addedTasks index
     addedTasks[currentElement]['class'] = category;
     updateHTML();
 }
