@@ -97,7 +97,7 @@ function cardTemplate(currentTask, i) {
           <span class="span_backlog category_container_backlog bold_backlog">${currentTask['category']}</span>
           <div class="span_backlog details_container_backlog details_backlog">
           <span>${currentTask['description']}</span>
-          <img onclick="showButtonBacklog(${i})" class="responsive_button_backlog" src="/img/backlog-img/menu.svg">   
+          <img onclick="showButtonBacklog(${i})" class="responsive_button_backlog" src="../../img/backlog-img/menu.svg">   
         </div>
       </div>
     </div>

@@ -37,7 +37,7 @@ function checkforEmpty() {
 function addPlus() {
     document.getElementById('to-do').innerHTML = /*html*/ `
         <div class="default-content">
-        <a href="#" onclick="window.location.href = 'addTasks.html'" title="add a task"><img src="/img/board-img/plus.png"></a>
+        <a href="#" onclick="window.location.href = 'addTasks.html'" title="add a task"><img src="../../img/board-img/plus.png"></a>
         </div>`;
 }
 
