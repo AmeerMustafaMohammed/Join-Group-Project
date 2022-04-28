@@ -1,6 +1,6 @@
 let closeMenu = true;
-let openMenuButton = '/img/navigation/open.svg';
-let closeMenuButton = '/img/navigation/close.svg';
+let openMenuButton = '../../img/navigation/open.svg';
+let closeMenuButton = '../../img/navigation/close.svg';
 
 
 function addSource() {
