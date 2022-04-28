@@ -2,6 +2,15 @@ body {
     margin-left: 300px;
     background-color: #11111b;
     font-family: 'Inter', sans-serif;
+    color: white;
+}
+
+textarea {
+    height: 8em !important;
+    resize: none;
+    width: 20em !important;
+    padding: 16px !important;
+    font-family: 'Inter', sans-serif;
 }
 
 
@@ -36,7 +45,7 @@ body {
 /* ADDING CONTAINER */
 
 #add-task-container {
-    background-color: #EBECF0;
+    background-color: rgba(223, 223, 231, 0.65);
     position: relative;
     border-radius: 5px;
     display: flex;
@@ -204,6 +213,26 @@ select {
     width: 100px;
     cursor: pointer;
 }
+
+
+/* CSS addded by Benjamin*/
+
+.inputfield {
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    padding-left: 6px;
+}
+
+.b-title {
+    height: 3em;
+}
+
+.add-class-div {
+    background-color: rgba(0,0,0,0);
+}
+
 
 
 /* RESPONSIV */

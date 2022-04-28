@@ -39,19 +39,19 @@
 
 
     <!-- ADDING FORM -->
-    <section id="add-task-container">
+    <section id="add-task-container" class="add-task-div">
 
         <!-- LEFT SIDE OF CONTAINER -->
         <div class="container-left">
 
             <div class="add-title">
                 <h2>Title</h2>
-                <input type="text" id="add-title" onfocus="this.value=''">
+                <input class="inputfield b-title" type="text" id="add-title" onfocus="this.value=''">
             </div>
             <div class="add-category">
                 <h2>CATEGORY</h2>
                 <div class="add-category-cild">
-                    <select id="add-category">
+                    <select class="inputfield" id="add-category">
                     <option value="IT">IT</option>
                     <option value="Controlling">Controlling</option>
                     <option value="Web">Web</option>
@@ -64,7 +64,7 @@
 
             <div class="add-description">
                 <h2>DESCRIPTION</h2>
-                <textarea id="add-description" cols="30" rows="10" onfocus="this.value=''"></textarea>
+                <textarea class="inputfield" id="add-description" cols="30" rows="10" onfocus="this.value=''"></textarea>
             </div>
 
         </div>
@@ -73,12 +73,12 @@
         <div class="container-right">
             <div class="add-date">
                 <h2>DUE DATE</h2>
-                <input type="date" id="add-date" value="2022-03-25">
+                <input class="inputfield" type="date" id="add-date" value="2022-03-25">
             </div>
 
             <div class="add-urgency">
                 <h2>URGENCY</h2>
-                <select id="add-urgency">
+                <select class="inputfield" id="add-urgency">
                    <option value="High">High</option>
                    <option value="Medium">Medium</option>
                    <option value="Low">Low</option>
@@ -88,7 +88,7 @@
             <div class="member-container">
                 <h2>MEMBER</h2>
                 <div class="asign-member">
-                    <select id="asign-member">
+                    <select class="inputfield" id="asign-member">
                         <option value="max musterman">Max Musterman</option>
                     </select>
                     <img src="../../img/add-task-img/img/icon plus.png" alt="" onclick="showDiv('add-user-container')">
