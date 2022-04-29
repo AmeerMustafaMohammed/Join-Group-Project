@@ -3,6 +3,11 @@ body {
     background-color: #11111b;
     font-family: 'Inter', sans-serif;
     color: white;
+    transition: all 160ms ease-in-out;
+}
+
+input[type=date] {
+    max-width: 100px;
 }
 
 textarea {
@@ -11,6 +16,19 @@ textarea {
     width: 20em !important;
     padding: 16px !important;
     font-family: 'Inter', sans-serif;
+}
+
+h1 {
+    font-weight: 100;
+}
+
+h2 {
+    font-weight: 300;
+    font-size: 1.4em
+}
+
+input {
+    max-width: 200px !important;
 }
 
 
@@ -45,7 +63,7 @@ textarea {
 /* ADDING CONTAINER */
 
 #add-task-container {
-    background-color: rgba(223, 223, 231, 0.65);
+    background-color: #2c2a37;
     position: relative;
     border-radius: 5px;
     display: flex;
@@ -136,23 +154,39 @@ textarea {
 
 .add-neu-user,
 .add-neu-Category {
-    height: 40%;
-    width: 40%;
-    background-color: white;
+    height: 63%;
+    width: 50%;
+    background-color: #3a3748;
     border-radius: 10px;
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     position: absolute;
 }
 
+.add-neu-Category p {
+    font-weight: 200;
+    text-align: center;
+    margin-top: 30%;
+}
+
 .add-neu-user input,
 .add-neu-Category input {
-    height: 40px;
-    width: 300px;
+    height: 3em;
+    width: 80%;
     margin-bottom: 20px;
+    margin-top: 20%;
+    border-radius: 6px;
+    border: none;
+    padding-left: 8px;
+    font-family: 'Inter', sans-serif;
+    background-color: #58546d;
+    color: white;
+}
+
+.add-neu-Category input:focus {
+    outline: none;
 }
 
 .add-neu-user button,
@@ -162,11 +196,21 @@ textarea {
     right: 20px;
     height: 40px;
     width: 100px;
-    border-radius: 14px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9em;
+    background-color: #58546d !important;
+}
+
+.add-neu-user button,
+.add-neu-Category button:hover {
+    background-color: #4c495f !important;
 }
 
 .x {
-    color: #393180 !important;
+    color: white !important;
     position: absolute;
     right: 5px;
     top: 5px;
@@ -185,12 +229,12 @@ button {
     margin: 0 5px;
     height: 70px;
     width: 120px;
-    background-color:#1e51c0;
     border: none;
-    border-radius: 20px;
+    border-radius: 6px;
     cursor: pointer;
     color: white;
-    font-size: 15px;
+    font-size: 3em;
+    font-family: 'Inter', sans-serif;
 }
 
 button:hover {
@@ -218,11 +262,14 @@ select {
 /* CSS addded by Benjamin*/
 
 .inputfield {
+    background-color: #4a4356;
+    color: white;
     border-radius: 4px;
     outline: none;
     border: none;
     font-family: 'Inter', sans-serif;
     padding-left: 6px;
+    outline: 2px solid #2c2a37;
 }
 
 .b-title {
@@ -231,6 +278,26 @@ select {
 
 .add-class-div {
     background-color: rgba(0,0,0,0);
+}
+
+.b-cancel {
+    background-color: transparent !important;
+    font-size: 0.8em !important;
+    transition: all 170ms ease-in-out;
+}
+
+.b-cancel:hover {
+    background-color: #4A4356 !important;
+}
+
+.b-add {
+    background-color: #343593;
+    transition: all 170ms ease-in-out;
+    font-size: 0.8em !important;
+}
+
+.b-add:hover {
+    background-color: #2c2e7d !important;
 }
 
 
@@ -255,12 +322,33 @@ select {
 @media only screen and (max-width: 850px) {
     body {
         margin-left: 160px;
+        background-color: #2c2a37;
+        overflow-x: hidden;
+    }
+
+    button {
+        margin-bottom: 16px;
     }
 }
 
 @media only screen and (max-width: 800px) {
     body {
         margin: 0;
+    }
+
+    .form-buttons {
+        position: absolute;
+        bottom: -127px !important;
+        right: 20px;
+        left: 33%;
+        right: 20%;
+        flex-direction: row !important;
+
+    }
+
+    .add-neu-user,
+    .add-neu-Category{
+        height: 38%;
     }
     /* HEAD */
     .big-title {
@@ -323,4 +411,27 @@ select {
         width: 100px;
         font-size: 10px;
     }
+
 }
+
+@media only screen and (max-width: 450px) {
+    .add-neu-user,
+    .add-neu-Category{
+        height: 32%;
+    }
+
+    .form-buttons {
+        position: absolute;
+        bottom: -127px !important;
+        right: 20px;
+        left: 18%;
+        right: 20%;
+        flex-direction: row !important;
+
+    }
+
+    .responsive-description {
+        max-width: 65% !important;
+    }
+}
+
