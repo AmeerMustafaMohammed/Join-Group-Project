@@ -7,7 +7,7 @@ body {
 }
 
 input[type=date] {
-    max-width: 100px;
+    max-width: 100px !important;
 }
 
 textarea {
@@ -171,6 +171,12 @@ input {
     margin-top: 30%;
 }
 
+.add-neu-user p {
+    font-weight: 200;
+    text-align: center;
+    margin-top: 30%;
+}
+
 .add-neu-user input,
 .add-neu-Category input {
     height: 3em;
@@ -186,6 +192,10 @@ input {
 }
 
 .add-neu-Category input:focus {
+    outline: none;
+}
+
+.add-neu-user input:focus {
     outline: none;
 }
 
