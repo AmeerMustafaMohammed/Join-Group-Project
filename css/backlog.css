@@ -1,9 +1,19 @@
 body {
     margin: 0;
+    width: calc(100vw - (100vw - 100%));
     background-color: #11111b;
     display: flex;
     flex-direction: row-reverse;
     font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+.display {
+    display: unset !important;
+}
+
+.d-none {
+    display: none !important;
 }
 
 .backlog_IT {
@@ -47,8 +57,14 @@ body {
 }
 
 .details_container_backlog {
+    padding: 10px;
+    margin-right: 20px;
+    max-height: 200px;
+    max-width: 16% !important;
     justify-content: flex-end;
     overflow-wrap: anywhere;
+    overflow-y: scroll;
+    box-sizing: border-box;
 }
 
 #backlog_container {
@@ -59,7 +75,7 @@ body {
     overflow-x: hidden;
 }
 
-h2 {
+h1 {
     margin: 0;
     color: white;
     font-size: 24px;
@@ -67,24 +83,32 @@ h2 {
 }
 
 .task_container_backlog {
-    width: 100%;
+/*    width: 100%;*/
     display: flex;
+    flex: 1;
 }
 
 .task_card_backlog {
     padding: 24px;
     margin: 10px 0;
     min-height: 120px;
-    max-height: 300px;
+    max-height: 200px;
     width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     position: relative;
     background-color: rgba(226, 228, 230, 0.8);
     border-radius: 10px;
     font-size: 18px;
     box-sizing: border-box;
+}
+
+.task_info_container {
+    max-height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .category_backlog {
@@ -98,7 +122,7 @@ h2 {
 
 #backlog_header {
     margin-bottom: 20px;
-    width: 100%;
+    width: calc(100% - 280px);
     display: flex;
     justify-content: space-between;
     color: white;
@@ -113,7 +137,7 @@ h2 {
 #backlog_button_container {
     padding-top: 250px;
     width: 300px;
-    display: flex;
+    display: flex !important;
     flex-direction: column-reverse;
     justify-content: space-around;
     box-sizing: border-box;
@@ -149,10 +173,128 @@ h2 {
     top: calc(50% - 25px);
     right: 0;
     cursor: pointer;
+}
+
+.details_card_backlog {
     display: none;
+    font-size: 20px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.details_card_backlog:hover {
+    color: #3b3a3a
+}
+
+.fullscreen_background {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+    z-index: 1;
+    opacity: 0.8;
+}
+
+.fullscreen_card {
+    margin: 0;
+    height: 50vh;
+    max-height: unset;
+    width: 50vw;
+    justify-content: flex-start;
+    gap: 10px;
+    position: absolute;
+    top: 25vh;
+    left: 25vw;
+    background-color: white;
+    border-radius: 0;
+    z-index: 2;
+}
+
+.fullscreen_card span {
+    min-height: 22px;
+}
+
+.fullscreen_category_container {
+    border-radius: 0;
+}
+
+.fullscreen_task_info {
+    padding: 20px 0;
+    max-height: unset !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.fullscreen_orientation {
+    padding: 20px 0;
+    height: 100%;
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.fullscreen_image {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.button_container_fullscreen {
+    position: fixed;
+    right: calc(25vw + 10px);
+    bottom: calc(25vh + 10px);
+    display: flex;
+    gap: 10px;
+}
+
+.fullscreen_btn {
+    height: 60px;
+    width: 140px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.fullscreen_btn_add {
+    background-color: #1e51c0;
+    border: none;
+}
+
+.fullscreen_btn_add:hover {
+    background-color: #3763c2;
+}
+
+.fullscreen_btn_remove {
+    background-color: #c02b1e;
+}
+
+.fullscreen_btn_remove:hover {
+    background-color: #c24037;
+}
+
+.fullscreen_details {
+    margin-bottom: -28px !important;
+    padding: 0 !important;
+    max-height: 50px !important;
+    max-width: 50% !important;
 }
 
 @media (max-width: 1800px) {
+    #backlog_header {
+        width: calc(100% - 200px);
+    }
+
     #backlog_button_container {
         width: 200px;
     }
@@ -175,6 +317,33 @@ h2 {
 
     .add_to_board_btn {
         width: 140px;
+    }
+
+    #backlog_header {
+        width: calc(100% - 140px);
+    }
+
+    .fullscreen_card {
+        height: unset;
+        min-height: 100vh;
+        width: 100vw;
+        top: 0;
+        left: 0;
+    }
+
+    .fullscreen_task_info {
+        height: unset;
+        min-height: calc(100vh - 88px);
+    }
+
+    .fullscreen_orientation {
+        height: unset;
+        min-height: calc(100vh - 88px);
+    }
+
+    .button_container_fullscreen {
+        right: 10px;
+        bottom: 10px;
     }
 }
 
@@ -199,21 +368,12 @@ h2 {
     }
 
     #backlog_content_container {
+        margin-top: 100px;
         width: 100%;
     }
-
-    #backlog_button_container {
-        display: none;
-        z-index: 1;
-    }
-
-    .responsive_button_backlog {
-        display: unset;
-    }
-
-    .details_container_backlog {
-        padding-right: 10px;
-        box-sizing: border-box;
+    
+    .add_to_board_btn {
+        display: none !important;
     }
 
     .task_card_backlog {
@@ -226,5 +386,38 @@ h2 {
 
     .add_to_board_btn {
         display: none;
+    }
+
+    .span_backlog {
+        max-width: 33.3%;
+        width: auto;
+    }
+
+    .button_container_fullscreen {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    #backlog_header {
+        display: none;
+    }
+
+    #backlog_button_container {
+        padding-top: 102px;
+    }
+
+    .category_container_backlog {
+        display: none;
+    }
+
+    .details_span_backlog {
+        display: none;
+    }
+}
+
+@media (max-width: 520px) {
+    .span_backlog {
+        width: auto;
     }
 }

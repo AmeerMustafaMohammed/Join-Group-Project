@@ -20,7 +20,7 @@ async function init() {
 //    }
 
 
-    loadGroupName(); //name of registered group is loaded from login.js
+//    loadGroupName(); //name of registered group is loaded from login.js
     changeDemo();
     loadAllUser(); // Load all user from LocalStorage
     addUserFromLogin();
