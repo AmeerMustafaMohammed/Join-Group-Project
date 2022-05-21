@@ -1,4 +1,4 @@
-setURL('http://gruppe-208.developerakademie.net/smallest_backend_ever');
+setURL('https://gruppe-208.developerakademie.net/smallest_backend_ever');
 
 let tasksBacklog = [];
 let isOpened = false;

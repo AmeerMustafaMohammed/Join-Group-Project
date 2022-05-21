@@ -4,6 +4,7 @@ body {
     background-color:#11111B;
     background-size: cover;
     overflow-x: hidden;
+    transition: all 170ms ease-in-out
 }
 
 input[type=text] {

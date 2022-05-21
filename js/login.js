@@ -1,4 +1,4 @@
-setURL('http://gruppe-208.developerakademie.net/smallest_backend_ever');
+setURL('https://gruppe-208.developerakademie.net/smallest_backend_ever');
 
 let groups = []; //all founded groups
 let users = []; //all user names
