@@ -43,6 +43,7 @@ function catchInputsBacklog() {
     let toMember = document.getElementById('asign-member').value;
 
     addTaskToTasksBacklog(newTitle, newCategory, newDescription, newDate, urgency, toMember);
+    showSucces('task_created');
 }
 
 
@@ -101,6 +102,24 @@ async function pushToTasks(i) {
     tasks.push(tasksBacklog[i]);
     saveJson('tasks', tasks);
     deleteTaskBacklog(i);
+    showSucces('task_added');
+}
+
+
+/**
+ * 
+ * this function is used to show the information and hide it again after a while
+ * @param {string} id 
+ */
+function showSucces(id) {
+   document.getElementById(id).classList.add('show_info');
+
+   setTimeout(hideAgain, 3000, id);
+}
+
+
+function hideAgain(id) {
+    document.getElementById(id).classList.remove('show_info');
 }
 
 
@@ -259,13 +278,14 @@ function changeImageQuitFullscreen(i) {
 
 /**
  * 
- * this function is used to deletea backlog task
+ * this function is used to delete a backlog task
  * @param {number} i
  */
 async function deleteTaskBacklog(i) {
     tasksBacklog.splice(i, 1);
     await saveJson('TasksBacklog', tasksBacklog);
     renderTasksBacklog();
+    document.getElementById('fullscreen_background').classList.add('d-none');
 
     if (isOpened) {
         isOpened = !isOpened;

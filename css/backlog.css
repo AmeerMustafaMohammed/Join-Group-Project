@@ -363,6 +363,10 @@ h1 {
 }
 
 @media (max-width: 800px) {
+    h1 {
+        left: calc(50vw - 47.5px);
+    }
+
     #backlog_container {
         width: 100%;
     }

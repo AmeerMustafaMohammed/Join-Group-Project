@@ -1,0 +1,33 @@
+.snackbar {
+    height: 100px;
+    width: 600px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: calc(50vw - 300px);
+    bottom: 30px;
+    border-radius: 20px;
+    font-size: 24px;
+    color: white;
+    background-color: #252525;
+}
+
+.show_info {
+    display: flex !important;
+}
+
+@media (max-width: 620px) {
+    .snackbar {
+        width: 400px;
+        left: calc(50vw - 200px);
+    }
+}
+
+@media (max-width: 420px) {
+    .snackbar {
+        width: 260px;
+        left: calc(50vw - 130px);
+        font-size: 20px;
+    }
+}

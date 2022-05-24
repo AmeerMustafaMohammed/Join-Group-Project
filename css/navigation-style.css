@@ -10,7 +10,7 @@
     position: fixed;
     left: 0;
     top: 0;
-    border-right: 1px #EBECF0 solid;
+    border-right: 1px solid white;
     z-index: 1;
 }
 
@@ -33,6 +33,7 @@
 
 #close-btn {
     display: none;
+    filter: invert(100%) sepia(79%) saturate(13%) hue-rotate(183deg) brightness(103%) contrast(103%);
 }
 
 .group-name {
@@ -67,19 +68,36 @@ h4 {
 
 @media only screen and (max-width: 800px) {
     #navigation {
-        transform: translateX(-180px);
+        transform: translateX(-301px);
+        width: 300px;
     }
+
     #close-btn {
         display: unset;
-        height: 140px;
+        height: 40px;
         width: 40px;
         object-fit: contain;
         color: white;
-        background-color: #0A0A1A;
-        border: 2px solid white;
-        border-radius: 0 20px 20px 0;
-        position: fixed;
-        left: 180px;
-        top: calc(50vh - 70px);
+        position: absolute;
+        top: 20px;
+        left: 320px;
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    #navigation {
+        transform: translateX(-201px);
+        width:200px;
+    }
+
+    #close-btn {
+        display: unset;
+        height: 40px;
+        width: 40px;
+        object-fit: contain;
+        color: white;
+        position: absolute;
+        top: 20px;
+        left: 220px;
     }
 }
